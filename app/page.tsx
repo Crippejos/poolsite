@@ -144,7 +144,7 @@ function ServiceSection() {
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-6">Våra tjänster</p>
 
        {/* Buttons */}
-        <div style={{ display: "flex", gap: "24px", marginBottom: "24px" }}>
+        <div style={{ display: "flex", gap: "24px", marginBottom: "24px", flexWrap: "wrap" }}>
           <button onMouseEnter={() => setActive(0)} onClick={() => setActive(0)}
             style={{ flex: 1, height: "110px", borderRadius: "16px", fontWeight: "bold", fontSize: "18px", cursor: "pointer", border: "none", background: active === 0 ? "#0f172a" : "#f5f5f5", color: active === 0 ? "white" : "#334155" }}>
             Poolbyggnation
@@ -186,7 +186,7 @@ export default function Home() {
         <div className="w-[90%]">
           <div className="relative overflow-hidden rounded-3xl" style={{ height: "90vh", minHeight: "520px" }}>
             <img src="/hero.png" alt="Pool hero" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute bottom-8 left-8 z-20 rounded-2xl bg-white p-8 shadow-2xl" style={{ width: "420px" }}>
+            <div className="absolute bottom-8 left-8 right-8 z-20 rounded-2xl bg-white p-8 shadow-2xl" style={{ maxWidth: "420px" }}>
               <h1 className="font-black leading-tight text-slate-900" style={{ fontSize: "2.2rem" }}>
                 Sveriges nya standard för pool & spa.
               </h1>
