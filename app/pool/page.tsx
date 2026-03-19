@@ -44,7 +44,7 @@ export default function Page() {
             {/* Left — detail boxes */}
             <div className="grid grid-cols-2 gap-3">
               {details.map((detail) => (
-                <div key={detail.label} className="rounded-2xl bg-slate-100 px-5 py-4">
+                <div key={detail.label} className="rounded-2xl bg-[#efefef] px-5 py-4">
                   <p className="text-xs text-slate-400 mb-1">{detail.label}</p>
                   <p className="text-sm font-semibold text-slate-900">{detail.value}</p>
                 </div>

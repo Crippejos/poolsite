@@ -36,7 +36,7 @@ const team = [
     role: "Telefonist och kundmottagning",
     email: "anders@poolpro.se",
     bg1: "bg-slate-300",
-    bg2: "bg-slate-500",
+    bg2: "bg-[#f5f5f5]0",
   },
   {
     name: "Kristoffer Svensson",

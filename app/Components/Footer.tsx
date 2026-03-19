@@ -18,7 +18,7 @@ function MapModal({ onClose }: { onClose: () => void }) {
         <div className="space-y-2">
           <a href={`https://www.google.com/maps/search/${address}/@${lat},${lng},12z`}
             target="_blank" rel="noopener noreferrer" onClick={onClose}
-            className="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+            className="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5] transition-all">
             <svg className="h-5 w-5 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
@@ -26,7 +26,7 @@ function MapModal({ onClose }: { onClose: () => void }) {
           </a>
           <a href={`https://waze.com/ul?ll=${lat},${lng}&navigate=yes`}
             target="_blank" rel="noopener noreferrer" onClick={onClose}
-            className="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+            className="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5] transition-all">
             <svg className="h-5 w-5 text-cyan-500" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
             </svg>
@@ -34,7 +34,7 @@ function MapModal({ onClose }: { onClose: () => void }) {
           </a>
           <a href={`https://maps.apple.com/?q=${address}&ll=${lat},${lng}`}
             target="_blank" rel="noopener noreferrer" onClick={onClose}
-            className="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+            className="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5] transition-all">
             <svg className="h-5 w-5 text-slate-700" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
@@ -42,7 +42,7 @@ function MapModal({ onClose }: { onClose: () => void }) {
           </a>
         </div>
         <button onClick={onClose}
-          className="mt-4 w-full rounded-2xl border border-slate-200 py-2.5 text-sm font-semibold text-slate-500 hover:bg-slate-50 transition-all">
+          className="mt-4 w-full rounded-2xl border border-slate-200 py-2.5 text-sm font-semibold text-slate-500 hover:bg-[#f5f5f5] transition-all">
           Avbryt
         </button>
       </div>
@@ -58,7 +58,7 @@ export default function Footer() {
       {showMap && <MapModal onClose={() => setShowMap(false)} />}
 
       <div className="mx-auto flex justify-center">
-        <div className="w-[90%] rounded-3xl bg-slate-100 p-10">
+        <div className="w-[90%] rounded-3xl bg-[#efefef] p-10">
 
           {/* Top — 4 columns */}
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">

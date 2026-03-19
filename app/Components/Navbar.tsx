@@ -42,14 +42,14 @@ function Dropdown({ items, onClose }: { label: string; items: DropdownItem[]; on
       {items.map((item) => (
         <div key={item.href}>
           <Link href={item.href} onClick={onClose}
-            className={`flex items-center px-4 py-2.5 text-sm transition-colors hover:bg-slate-50 ${pathname === item.href ? "text-slate-900 font-semibold" : "text-slate-600"}`}>
+            className={`flex items-center px-4 py-2.5 text-sm transition-colors hover:bg-[#f5f5f5] ${pathname === item.href ? "text-slate-900 font-semibold" : "text-slate-600"}`}>
             {item.label}
           </Link>
           {item.children && (
             <div className="border-t border-slate-50">
               {item.children.map((child) => (
                 <Link key={child.href} href={child.href} onClick={onClose}
-                  className={`block pl-7 pr-4 py-2 text-sm transition-colors hover:bg-slate-50 ${pathname === child.href ? "text-slate-900 font-semibold" : "text-slate-400"}`}>
+                  className={`block pl-7 pr-4 py-2 text-sm transition-colors hover:bg-[#f5f5f5] ${pathname === child.href ? "text-slate-900 font-semibold" : "text-slate-400"}`}>
                   {child.label}
                 </Link>
               ))}
@@ -136,10 +136,10 @@ export default function Navbar() {
         {/* CTA */}
         <div className="flex items-center gap-3">
           <Link href="/kontakt"
-            className="hidden sm:inline-flex rounded-full border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+            className="hidden sm:inline-flex rounded-full border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5] transition-all">
             Begär offert
           </Link>
-          <button className="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" onClick={() => setMobileOpen((v) => !v)}>
+          <button className="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-[#efefef]" onClick={() => setMobileOpen((v) => !v)}>
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
@@ -148,10 +148,10 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="lg:hidden border-t border-slate-100 bg-white px-4 py-4 space-y-1">
-          <Link href="/" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Home</Link>
+          <Link href="/" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Home</Link>
 
           <button onClick={() => setMobilePool((v) => !v)}
-            className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+            className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">
             Produkter <ChevronDown className={`w-4 h-4 transition-transform ${mobilePool ? "rotate-180" : ""}`} />
           </button>
           {mobilePool && (
@@ -168,7 +168,7 @@ export default function Navbar() {
           )}
 
           <button onClick={() => setMobileSpabad((v) => !v)}
-            className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+            className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">
             Spabad <ChevronDown className={`w-4 h-4 transition-transform ${mobileSpabad ? "rotate-180" : ""}`} />
           </button>
           {mobileSpabad && (
@@ -179,10 +179,10 @@ export default function Navbar() {
             </div>
           )}
 
-          <Link href="/bastu" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Bastu</Link>
-          <Link href="/showroom" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Galleri</Link>
-          <Link href="/om-oss" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Om oss</Link>
-          <Link href="/kontakt" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Kontakt</Link>
+          <Link href="/bastu" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Bastu</Link>
+          <Link href="/showroom" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Galleri</Link>
+          <Link href="/om-oss" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Om oss</Link>
+          <Link href="/kontakt" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Kontakt</Link>
 
           <div className="pt-2">
             <Link href="/kontakt" className="flex w-full items-center justify-center rounded-full border border-slate-200 py-2.5 text-sm font-semibold text-slate-700">

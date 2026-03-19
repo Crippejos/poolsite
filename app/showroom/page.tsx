@@ -10,7 +10,7 @@ const gallery = [
   { title: "Swimspa Duo", category: "Spabad", size: "large", color: "bg-neutral-400" },
   { title: "Vildmarksspa", category: "Spabad", size: "small", color: "bg-stone-400" },
   { title: "Utomhusbastu", category: "Bastu", size: "small", color: "bg-amber-200" },
-  { title: "Family Spa", category: "Spabad", size: "small", color: "bg-slate-500" },
+  { title: "Family Spa", category: "Spabad", size: "small", color: "bg-[#f5f5f5]0" },
   { title: "Rostfri pool", category: "Pool", size: "large", color: "bg-zinc-300" },
   { title: "Bastu med utsikt", category: "Bastu", size: "small", color: "bg-amber-300" },
   { title: "Cover Seal pool", category: "Pool", size: "small", color: "bg-stone-500" },
@@ -68,7 +68,7 @@ export default function Page() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="border-t border-slate-100 px-6 py-20 sm:px-12 lg:px-20 bg-slate-50">
+      <section className="border-t border-slate-100 px-6 py-20 sm:px-12 lg:px-20 bg-[#f5f5f5]">
         <div className="mx-auto max-w-7xl text-center">
           <h2 className="text-3xl font-black text-slate-900">Vill du se mer?</h2>
           <p className="mt-3 text-sm text-slate-500 max-w-md mx-auto">Besök vårt fysiska showroom i Stockholm eller kontakta oss för en kostnadsfri konsultation.</p>
@@ -76,7 +76,7 @@ export default function Page() {
             <a href="/kontakt" className="rounded-full bg-slate-900 px-7 py-3 font-bold text-white hover:bg-slate-700 transition-all">
               Kontakta oss
             </a>
-            <a href="/om-oss" className="rounded-full border border-slate-200 px-7 py-3 font-bold text-slate-700 hover:bg-slate-100 transition-all">
+            <a href="/om-oss" className="rounded-full border border-slate-200 px-7 py-3 font-bold text-slate-700 hover:bg-[#efefef] transition-all">
               Om oss
             </a>
           </div>

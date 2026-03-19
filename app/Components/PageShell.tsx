@@ -45,7 +45,7 @@ export default function PageShell({ title, description, breadcrumbs, badge, chil
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         {children ?? (
-          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 py-24 text-center">
+          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-[#f5f5f5] py-24 text-center">
             <p className="text-lg font-semibold text-slate-500">Innehåll kommer snart</p>
             <p className="mt-1 text-sm text-slate-400">Produkter för <span className="font-medium text-slate-600">{title}</span> läggs till här.</p>
           </div>

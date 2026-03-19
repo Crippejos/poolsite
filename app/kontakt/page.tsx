@@ -65,7 +65,7 @@ export default function Page() {
                   <h3 className="text-xl font-bold text-slate-900">Tack för ditt meddelande!</h3>
                   <p className="mt-2 text-slate-500">Vi återkommer inom 1–2 arbetsdagar.</p>
                   <button onClick={() => { setSubmitted(false); setForm({ name: "", email: "", phone: "", subject: "", message: "" }); }}
-                    className="mt-6 rounded-xl border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50">
+                    className="mt-6 rounded-xl border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-600 hover:bg-[#f5f5f5]">
                     Skicka ett nytt meddelande
                   </button>
                 </div>
