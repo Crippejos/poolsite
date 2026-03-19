@@ -1,0 +1,282 @@
+cat > app/pool/thermoblock/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Thermoblock | PoolPro" };
+export default function Page() {
+  return <PageShell title="Thermoblock" description="Energieffektiva pooler med isolerande thermoblockvägg." breadcrumbs={[{ label: "Pool", href: "/pool" }, { label: "Thermoblock" }]} badge="Pool" />;
+}
+EOF
+
+cat > app/pool/gjuten-stomme/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Gjuten stomme | PoolPro" };
+export default function Page() {
+  return <PageShell title="Gjuten stomme" description="Traditionell betongpool med gjuten stomme – robust och tidlös design." breadcrumbs={[{ label: "Pool", href: "/pool" }, { label: "Gjuten stomme" }]} badge="Pool" />;
+}
+EOF
+
+cat > app/pool/rostfri-stomme/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Rostfri stomme | PoolPro" };
+export default function Page() {
+  return <PageShell title="Rostfri stomme" description="Pool i maringrade rostfritt stål – extremt hållbar och underhållsfri." breadcrumbs={[{ label: "Pool", href: "/pool" }, { label: "Rostfri stomme" }]} badge="Pool" />;
+}
+EOF
+
+cat > app/pool/pooloverdrag/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Poolöverdrag | PoolPro" };
+export default function Page() {
+  return <PageShell title="Poolöverdrag" description="Skydda din pool med våra högkvalitativa överdrag." breadcrumbs={[{ label: "Pool", href: "/pool" }, { label: "Poolöverdrag" }]} badge="Pool" />;
+}
+EOF
+
+cat > app/pool/pooloverdrag/pooltak/page.tsx << 'EOF'
+import PageShell from "../../../Components/PageShell";
+export const metadata = { title: "Pooltak | PoolPro" };
+export default function Page() {
+  return <PageShell title="Pooltak" description="Teleskoptak för säsongsförlängning och ökad säkerhet." breadcrumbs={[{ label: "Pool", href: "/pool" }, { label: "Poolöverdrag", href: "/pool/pooloverdrag" }, { label: "Pooltak" }]} badge="Poolöverdrag" />;
+}
+EOF
+
+cat > app/pool/pooloverdrag/cover-seal/page.tsx << 'EOF'
+import PageShell from "../../../Components/PageShell";
+export const metadata = { title: "Cover Seal | PoolPro" };
+export default function Page() {
+  return <PageShell title="Cover Seal" description="Automatiskt poolöverdrag som öppnar och stänger med ett knapptryck." breadcrumbs={[{ label: "Pool", href: "/pool" }, { label: "Poolöverdrag", href: "/pool/pooloverdrag" }, { label: "Cover Seal" }]} badge="Poolöverdrag" />;
+}
+EOF
+
+cat > app/pool/liner/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Liner | PoolPro" };
+export default function Page() {
+  return <PageShell title="Liner" description="Högkvalitativa poolliners i standardmått och specialbeställning." breadcrumbs={[{ label: "Pool", href: "/pool" }, { label: "Liner" }]} badge="Pool" />;
+}
+EOF
+
+cat > app/pool/liner/standardmatt/page.tsx << 'EOF'
+import PageShell from "../../../Components/PageShell";
+export const metadata = { title: "Standardmått | PoolPro" };
+export default function Page() {
+  return <PageShell title="Standardmått" description="Poolliners i standardmått – finns i flera tjocklekar." breadcrumbs={[{ label: "Pool", href: "/pool" }, { label: "Liner", href: "/pool/liner" }, { label: "Standardmått" }]} badge="Liner" />;
+}
+EOF
+
+cat > app/pool/liner/svetsad-liner/page.tsx << 'EOF'
+import PageShell from "../../../Components/PageShell";
+export const metadata = { title: "Svetsad liner | PoolPro" };
+export default function Page() {
+  return <PageShell title="Svetsad liner" description="Skräddarsydd liner svetsad efter poolens exakta mått." breadcrumbs={[{ label: "Pool", href: "/pool" }, { label: "Liner", href: "/pool/liner" }, { label: "Svetsad liner" }]} badge="Liner" />;
+}
+EOF
+
+cat > app/spabad/page.tsx << 'EOF'
+import PageShell from "../Components/PageShell";
+export const metadata = { title: "Spabad | PoolPro" };
+export default function Page() {
+  return <PageShell title="Spabad" description="Upptäck vårt kompletta sortiment av spabad för alla behov." breadcrumbs={[{ label: "Spabad" }]} badge="Spabad" />;
+}
+EOF
+
+cat > app/spabad/black-edition/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Black Edition | PoolPro" };
+export default function Page() {
+  return <PageShell title="Black Edition" description="Exklusiva spabad i helsvart utförande med LED-belysning." breadcrumbs={[{ label: "Spabad", href: "/spabad" }, { label: "Black Edition" }]} badge="Spabad" />;
+}
+EOF
+
+cat > app/spabad/swimspa/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Swimspa | PoolPro" };
+export default function Page() {
+  return <PageShell title="Swimspa" description="Kombinerad swimspa och spabad – simma och koppla av i samma enhet." breadcrumbs={[{ label: "Spabad", href: "/spabad" }, { label: "Swimspa" }]} badge="Spabad" />;
+}
+EOF
+
+cat > app/spabad/vildmarksspa/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Vildmarksspa | PoolPro" };
+export default function Page() {
+  return <PageShell title="Vildmarksspa" description="Klassisk vedeldad vildmarksspa i cederträ – ingen el behövs." breadcrumbs={[{ label: "Spabad", href: "/spabad" }, { label: "Vildmarksspa" }]} badge="Spabad" />;
+}
+EOF
+
+cat > app/spabad/family-spa/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Family Spa | PoolPro" };
+export default function Page() {
+  return <PageShell title="Family Spa" description="Rymlig familjespa för upp till 8 personer med barnvänliga funktioner." breadcrumbs={[{ label: "Spabad", href: "/spabad" }, { label: "Family Spa" }]} badge="Spabad" />;
+}
+EOF
+
+cat > app/spabad/tillbehor/page.tsx << 'EOF'
+import PageShell from "../../Components/PageShell";
+export const metadata = { title: "Tillbehör | PoolPro" };
+export default function Page() {
+  return <PageShell title="Tillbehör" description="Allt tillbehör du behöver för din spabad." breadcrumbs={[{ label: "Spabad", href: "/spabad" }, { label: "Tillbehör" }]} badge="Spabad" />;
+}
+EOF
+
+cat > app/bastu/page.tsx << 'EOF'
+import PageShell from "../Components/PageShell";
+export const metadata = { title: "Bastu | PoolPro" };
+export default function Page() {
+  return <PageShell title="Bastu" description="Fristående utomhusbastur i nordisk tradition." breadcrumbs={[{ label: "Bastu" }]} badge="Bastu" />;
+}
+EOF
+
+cat > app/helentreprenad/page.tsx << 'EOF'
+import PageShell from "../Components/PageShell";
+export const metadata = { title: "Helentreprenad | PoolPro" };
+export default function Page() {
+  return <PageShell title="Helentreprenad" description="Vi sköter hela projektet från planering till nyckelfärdig leverans." breadcrumbs={[{ label: "Helentreprenad" }]} badge="Tjänster" />;
+}
+EOF
+
+cat > app/showroom/page.tsx << 'EOF'
+import PageShell from "../Components/PageShell";
+export const metadata = { title: "Showroom | PoolPro" };
+export default function Page() {
+  return <PageShell title="Showroom" description="Besök oss och upplev våra produkter på plats." breadcrumbs={[{ label: "Showroom" }]} badge="Showroom" />;
+}
+EOF
+
+cat > app/om-oss/page.tsx << 'EOF'
+import PageShell from "../Components/PageShell";
+export const metadata = { title: "Om oss | PoolPro" };
+export default function Page() {
+  return <PageShell title="Om oss" description="Lär känna teamet bakom PoolPro och vår passion för pool och spa." breadcrumbs={[{ label: "Om oss" }]} badge="Om oss" />;
+}
+EOF
+
+cat > app/kontakt/page.tsx << 'EOF'
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { ChevronRight, Send, CheckCircle2, MapPin, Phone, Mail, Clock } from "lucide-react";
+
+export default function Page() {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 1200));
+    setLoading(false);
+    setSubmitted(true);
+  }
+
+  return (
+    <main className="min-h-screen">
+      <section className="border-b border-slate-200 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-950 px-4 py-20 text-white sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <nav className="mb-6 flex items-center gap-1 text-sm text-slate-400">
+            <Link href="/" className="hover:text-white transition-colors">Hem</Link>
+            <ChevronRight className="w-3.5 h-3.5 opacity-50" />
+            <span className="text-white font-medium">Kontakt</span>
+          </nav>
+          <span className="mb-4 inline-block rounded-full bg-blue-500/20 border border-blue-400/30 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-blue-300">Kontakta oss</span>
+          <h1 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">Kontakt</h1>
+          <p className="mt-4 max-w-2xl text-lg text-slate-300 leading-relaxed">Har du frågor eller vill ha en offert? Vi hör av oss inom 24 timmar.</p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-3">
+          <div className="space-y-6 lg:col-span-1">
+            <h2 className="text-xl font-bold text-slate-900">Kontaktuppgifter</h2>
+            <div className="divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white overflow-hidden">
+              {[
+                { icon: Phone, label: "Telefon", value: "+46 08-123 45 67" },
+                { icon: Mail, label: "E-post", value: "info@poolpro.se" },
+                { icon: MapPin, label: "Adress", value: "Poolvägen 12, Stockholm" },
+                { icon: Clock, label: "Öppettider", value: "Mån–Fre 08–17" },
+              ].map(({ icon: Icon, label, value }) => (
+                <div key={label} className="flex items-start gap-4 p-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600"><Icon className="h-5 w-5" /></div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{label}</p>
+                    <p className="mt-0.5 text-sm font-medium text-slate-700">{value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-2">
+            <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+              {submitted ? (
+                <div className="flex flex-col items-center justify-center py-16 text-center">
+                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600"><CheckCircle2 className="h-8 w-8" /></div>
+                  <h3 className="text-xl font-bold text-slate-900">Tack för ditt meddelande!</h3>
+                  <p className="mt-2 text-slate-500">Vi återkommer inom 1–2 arbetsdagar.</p>
+                  <button onClick={() => { setSubmitted(false); setForm({ name: "", email: "", phone: "", subject: "", message: "" }); }}
+                    className="mt-6 rounded-xl border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50">
+                    Skicka ett nytt meddelande
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <h2 className="text-xl font-bold text-slate-900">Skicka ett meddelande</h2>
+                  <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div>
+                        <label className="mb-1.5 block text-sm font-semibold text-slate-700">Namn *</label>
+                        <input name="name" type="text" required value={form.name} onChange={handleChange} placeholder="Anna Svensson"
+                          className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+                      </div>
+                      <div>
+                        <label className="mb-1.5 block text-sm font-semibold text-slate-700">Telefon</label>
+                        <input name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="+46 70 123 45 67"
+                          className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="mb-1.5 block text-sm font-semibold text-slate-700">E-post *</label>
+                      <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder="anna@example.com"
+                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+                    </div>
+                    <div>
+                      <label className="mb-1.5 block text-sm font-semibold text-slate-700">Ärende *</label>
+                      <select name="subject" required value={form.subject} onChange={handleChange}
+                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                        <option value="" disabled>Välj ärende...</option>
+                        <option value="offert-pool">Offert – Pool</option>
+                        <option value="offert-spabad">Offert – Spabad</option>
+                        <option value="offert-bastu">Offert – Bastu</option>
+                        <option value="helentreprenad">Helentreprenad</option>
+                        <option value="service">Service & underhåll</option>
+                        <option value="ovrigt">Övrigt</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="mb-1.5 block text-sm font-semibold text-slate-700">Meddelande *</label>
+                      <textarea name="message" required rows={5} value={form.message} onChange={handleChange} placeholder="Berätta om ditt projekt..."
+                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 resize-none" />
+                    </div>
+                    <div className="flex justify-end">
+                      <button type="submit" disabled={loading}
+                        className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-blue-700 disabled:opacity-60">
+                        {loading ? "Skickar..." : <><Send className="h-4 w-4" /> Skicka meddelande</>}
+                      </button>
+                    </div>
+                  </form>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+EOF
+find app/spabad -name "page.tsx" | sort
+find app/spabad -name "page.tsx" | sort
