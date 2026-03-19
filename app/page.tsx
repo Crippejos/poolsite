@@ -143,14 +143,20 @@ function ServiceSection() {
       <div className="mx-auto max-w-7xl">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-6">Våra tjänster</p>
 
-        {/* Buttons */}
-        <div className="grid grid-cols-3 gap-3 mb-4">
-          {serviceData.map((s, i) => (
-            <button key={s.title} onMouseEnter={() => setActive(i)} onClick={() => setActive(i)}
-              className={`rounded-2xl px-6 py-5 text-center font-bold text-lg transition-all duration-200 ${active === i ? "bg-slate-900 text-white" : "bg-[#efefef] text-slate-700 hover:bg-slate-900 hover:text-white"}`}>
-              {s.title}
-            </button>
-          ))}
+       {/* Buttons */}
+        <div style={{ display: "flex", gap: "24px", marginBottom: "24px" }}>
+          <button onMouseEnter={() => setActive(0)} onClick={() => setActive(0)}
+            style={{ flex: 1, height: "110px", borderRadius: "16px", fontWeight: "bold", fontSize: "18px", cursor: "pointer", border: "none", background: active === 0 ? "#0f172a" : "#f5f5f5", color: active === 0 ? "white" : "#334155" }}>
+            Poolbyggnation
+          </button>
+          <button onMouseEnter={() => setActive(1)} onClick={() => setActive(1)}
+            style={{ flex: 1, height: "110px", borderRadius: "16px", fontWeight: "bold", fontSize: "18px", cursor: "pointer", border: "none", background: active === 1 ? "#0f172a" : "#f5f5f5", color: active === 1 ? "white" : "#334155" }}>
+            Helentreprenad
+          </button>
+          <button onMouseEnter={() => setActive(2)} onClick={() => setActive(2)}
+            style={{ flex: 1, height: "110px", borderRadius: "16px", fontWeight: "bold", fontSize: "18px", cursor: "pointer", border: "none", background: active === 2 ? "#0f172a" : "#f5f5f5", color: active === 2 ? "white" : "#334155" }}>
+            Service
+          </button>
         </div>
 
         {/* Image panel */}
@@ -175,23 +181,23 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
 
-      {/* ── Hero ── */}
+    {/* ── Hero ── */}
       <section className="pt-4 pb-0 flex justify-center">
         <div className="w-[90%]">
           <div className="relative overflow-hidden rounded-3xl" style={{ height: "90vh", minHeight: "520px" }}>
             <img src="/hero.png" alt="Pool hero" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute bottom-8 left-8 z-20 w-72 sm:w-80 rounded-2xl bg-white p-7 shadow-2xl">
-              <h1 className="text-3xl font-black leading-tight tracking-tight text-slate-900 sm:text-4xl">
+            <div className="absolute bottom-8 left-8 z-20 rounded-2xl bg-white p-8 shadow-2xl" style={{ width: "420px" }}>
+              <h1 className="font-black leading-tight text-slate-900" style={{ fontSize: "2.2rem" }}>
                 Sveriges nya standard för pool & spa.
               </h1>
               <p className="mt-3 text-sm text-slate-400 leading-relaxed">
                 Designade vattenmiljöer för moderna hem.
               </p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Link href="/pool" className="rounded-full bg-slate-900 px-5 py-2.5 text-sm font-bold text-white hover:bg-slate-700 transition-all">
+              <div className="mt-5 flex gap-3">
+                <Link href="/pool" className="rounded-2xl bg-slate-900 text-sm font-semibold text-white hover:bg-slate-700 transition-all" style={{ padding: "16px 24px" }}>
                   Se våra produkter
                 </Link>
-                <Link href="/kontakt" className="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-bold text-slate-700 hover:bg-[#f5f5f5] transition-all">
+                <Link href="/kontakt" className="rounded-2xl border border-slate-300 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all" style={{ padding: "16px 24px" }}>
                   Kontakta oss
                 </Link>
               </div>

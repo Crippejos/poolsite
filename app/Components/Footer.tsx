@@ -54,7 +54,7 @@ export default function Footer() {
   const [showMap, setShowMap] = useState(false);
 
   return (
-    <footer className="bg-white px-6 py-8 sm:px-12 lg:px-20">
+    <footer className="bg-white py-8">
       {showMap && <MapModal onClose={() => setShowMap(false)} />}
 
       <div className="mx-auto flex justify-center">
