@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -32,29 +33,20 @@ function useCountUp(target: number, duration: number = 2000) {
   return { count, ref };
 }
 
-const services = [
-  {
-    tab: "Poolbyggnation",
-    description: "Vi levererar kompletta poolanläggningar för moderna hem. Från den inledande projekteringen till den färdiga poolen — vi hanterar hela byggprocessen med precision och kvalitet.\n\nVi arbetar med beprövade metoder och samarbetspartners inom branschen. Vår erfarenhet säkerställer att varje projekt levereras i tid och inom budget.\n\nGenom att erbjuda ett brett utbud av pooltyper kan vi skräddarsy varje projekt efter kundens önskemål.",
-  },
-  { tab: "Helentreprenad", description: "Som helentreprenör tar vi ansvar för hela din poolanläggning." },
-  { tab: "Service", description: "Vi erbjuder komplett service och underhåll för pooler och spabad." },
-];
-
 const steps = [
-  { number: "01", title: "Schematic Design", description: "Where a preliminary design is conceived." },
-  { number: "02", title: "Design Development", description: "Where details of the design are fleshed out." },
-  { number: "03", title: "Construction Documents", description: "Where detailed drawings and specifications are created." },
-  { number: "04", title: "Construction Administration", description: "Where the building is overseen during construction to ensure it is built according to the design." },
+  { number: "01", title: "Schematisk design", description: "Vi tar fram en preliminär design utifrån dina önskemål och tomtens förutsättningar." },
+  { number: "02", title: "Designutveckling", description: "Detaljerna i designen arbetas fram – material, teknik, färg och form." },
+  { number: "03", title: "Konstruktionshandlingar", description: "Detaljerade ritningar och specifikationer tas fram inför byggnation." },
+  { number: "04", title: "Byggledarskap", description: "Vi övervakar bygget och säkerställer att allt utförs enligt den godkända designen." },
 ];
 
 const products = [
-  { title: "Utomhuspool", category: "Pool", href: "/pool", color: "bg-stone-400" },
-  { title: "Infinity Pool", category: "Pool", href: "/pool", color: "bg-[#f5f5f5]0" },
-  { title: "Spabad", category: "Spabad", href: "/spabad", color: "bg-zinc-400" },
-  { title: "Swimspa", category: "Spabad", href: "/spabad/swimspa", color: "bg-neutral-500" },
-  { title: "Vildmarksspa", category: "Spabad", href: "/spabad/vildmarksspa", color: "bg-stone-500" },
-  { title: "Bastu", category: "Bastu", href: "/bastu", color: "bg-slate-400" },
+  { title: "Pool",       category: "Pool",       href: "/pool",           color: "bg-slate-500"   },
+  { title: "Spabad",     category: "Spabad",     href: "/spabad",         color: "bg-stone-500"   },
+  { title: "Swimspa",    category: "Spabad",     href: "/spabad/swimspa", color: "bg-slate-600"   },
+  { title: "Bastu",      category: "Bastu",      href: "/bastu",          color: "bg-amber-900"   },
+  { title: "Grillar",    category: "Grillar",    href: "/grillar",        color: "bg-stone-700"   },
+  { title: "Tillbehör",  category: "Tillbehör",  href: "/tillbehor",      color: "bg-zinc-600"    },
 ];
 
 const partners = [
@@ -87,18 +79,8 @@ function PartnersSection() {
               </div>
             </div>
 
-            {/* Logo carousel — same height as stat boxes */}
-            <div className="rounded-2xl bg-[#efefef] overflow-hidden flex items-center" style={{ height: "100px" }}>
-              <style>{`
-                @keyframes marquee {
-                  from { transform: translateX(0); }
-                  to { transform: translateX(-50%); }
-                }
-                .animate-marquee {
-                  animation: marquee 20s linear infinite;
-                  will-change: transform;
-                }
-              `}</style>
+            {/* Logo carousel */}
+            <div className="rounded-2xl bg-[#efefef] overflow-hidden flex items-center h-[100px]">
               <div className="flex animate-marquee whitespace-nowrap items-center">
                 {[...partners, ...partners].map((partner, i) => (
                   <div key={i} className="inline-flex items-center mx-10 shrink-0">
@@ -113,6 +95,7 @@ function PartnersSection() {
     </section>
   );
 }
+
 const serviceData = [
   {
     title: "Poolbyggnation",
@@ -141,37 +124,39 @@ function ServiceSection() {
   return (
     <section className="px-6 py-20 sm:px-12 lg:px-20">
       <div className="mx-auto max-w-7xl">
-        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-6">Våra tjänster</p>
+        <div className="flex items-center justify-between mb-6">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Våra tjänster</p>
+          <Link href="/tjanster" className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-900 transition-colors">
+            Se alla <ArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
 
-      {/* Buttons */}
+        {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
-          <button onMouseEnter={() => setActive(0)} onClick={() => setActive(0)}
-            style={{ height: "110px", borderRadius: "16px", fontWeight: "bold", fontSize: "18px", cursor: "pointer", border: "none", background: active === 0 ? "#0f172a" : "#f5f5f5", color: active === 0 ? "white" : "#334155" }}
-            className="w-full sm:flex-1">
-            Poolbyggnation
-          </button>
-          <button onMouseEnter={() => setActive(1)} onClick={() => setActive(1)}
-            style={{ height: "110px", borderRadius: "16px", fontWeight: "bold", fontSize: "18px", cursor: "pointer", border: "none", background: active === 1 ? "#0f172a" : "#f5f5f5", color: active === 1 ? "white" : "#334155" }}
-            className="w-full sm:flex-1">
-            Helentreprenad
-          </button>
-          <button onMouseEnter={() => setActive(2)} onClick={() => setActive(2)}
-            style={{ height: "110px", borderRadius: "16px", fontWeight: "bold", fontSize: "18px", cursor: "pointer", border: "none", background: active === 2 ? "#0f172a" : "#f5f5f5", color: active === 2 ? "white" : "#334155" }}
-            className="w-full sm:flex-1">
-            Service
-          </button>
+          {serviceData.map((s, i) => (
+            <button
+              key={s.title}
+              onMouseEnter={() => setActive(i)}
+              onClick={() => setActive(i)}
+              className={`w-full sm:flex-1 h-[110px] rounded-2xl font-bold text-lg cursor-pointer border-none transition-colors ${
+                active === i ? "bg-slate-900 text-white" : "bg-[#f5f5f5] text-slate-700"
+              }`}
+            >
+              {s.title}
+            </button>
+          ))}
         </div>
 
         {/* Image panel */}
         <Link href={current.href}>
-          <div className={`relative overflow-hidden rounded-3xl ${current.bg} transition-all duration-300`} style={{ height: "500px" }}>
+          <div className={`relative overflow-hidden rounded-3xl ${current.bg} h-[260px] sm:h-[380px] lg:h-[500px] transition-all duration-300`}>
             <div className="absolute inset-0 bg-black/20" />
             <div className="absolute inset-0 flex items-center justify-center text-white/20 text-xs uppercase tracking-widest">
               Tjänst bild här
             </div>
             <div className="absolute bottom-6 left-6 rounded-2xl bg-white/90 backdrop-blur p-6 max-w-sm">
               <h3 className="text-lg font-bold text-slate-900">{current.title}</h3>
-              <p className="mt-2 text-sm text-slate-500 leading-relaxed">{current.description}</p>
+              <p className="mt-2 text-sm text-slate-500 leading-relaxed line-clamp-3 sm:line-clamp-none">{current.description}</p>
             </div>
           </div>
         </Link>
@@ -180,6 +165,7 @@ function ServiceSection() {
     </section>
   );
 }
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -187,20 +173,20 @@ export default function Home() {
     {/* ── Hero ── */}
       <section className="pt-4 pb-0 flex justify-center">
         <div className="w-[90%]">
-          <div className="relative overflow-hidden rounded-3xl" style={{ height: "90vh", minHeight: "520px" }}>
-            <img src="/hero.png" alt="Pool hero" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute bottom-8 left-8 right-8 z-20 rounded-2xl bg-white p-8 shadow-2xl" style={{ maxWidth: "420px" }}>
-              <h1 className="font-black leading-tight text-slate-900" style={{ fontSize: "2.2rem" }}>
+          <div className="relative overflow-hidden rounded-3xl h-[90vh] min-h-[520px]">
+            <Image src="/hero.png" alt="Pool hero" fill className="object-cover" priority />
+            <div className="absolute bottom-8 left-8 right-8 z-20 rounded-2xl bg-white p-8 shadow-2xl max-w-[420px]">
+              <h1 className="font-black leading-tight text-slate-900 text-[2.2rem]">
                 Sveriges nya standard för pool & spa.
               </h1>
               <p className="mt-3 text-sm text-slate-400 leading-relaxed">
                 Designade vattenmiljöer för moderna hem.
               </p>
               <div className="mt-5 flex gap-3">
-                <Link href="/pool" className="rounded-2xl bg-slate-900 text-sm font-semibold text-white hover:bg-slate-700 transition-all" style={{ padding: "16px 24px" }}>
+                <Link href="/pool" className="rounded-2xl bg-slate-900 text-sm font-semibold text-white hover:bg-slate-700 transition-all px-6 py-4">
                   Se våra produkter
                 </Link>
-                <Link href="/kontakt" className="rounded-2xl border border-slate-300 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all" style={{ padding: "16px 24px" }}>
+                <Link href="/kontakt" className="rounded-2xl border border-slate-300 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all px-6 py-4">
                   Kontakta oss
                 </Link>
               </div>
@@ -254,7 +240,7 @@ export default function Home() {
               Se alla <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {products.map((product) => (
               <Link key={product.title} href={product.href}
                 className={`group relative overflow-hidden rounded-2xl ${product.color} aspect-[4/3] flex flex-col justify-end p-5 hover:opacity-90 transition-all`}>

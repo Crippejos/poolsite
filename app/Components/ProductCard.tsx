@@ -1,33 +1,64 @@
+import Link from "next/link";
+
 type Props = {
   name: string;
   description: string;
   price: number;
+  sku?: string;
+  href?: string;
 };
 
-export default function ProductCard({ name, description, price }: Props) {
+function formatPrice(n: number) {
+  return n.toLocaleString("sv-SE") + " kr";
+}
+
+export default function ProductCard({ name, description, price, sku, href = "/kontakt" }: Props) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-      <div className="h-48 bg-gradient-to-br from-slate-100 to-blue-50 flex items-center justify-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100 text-blue-600">
-          <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7c0-1.1.9-2 2-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
-          </svg>
+    <div className="group flex flex-col rounded-2xl bg-white border border-slate-100 overflow-hidden hover:shadow-lg hover:border-slate-200 transition-all duration-300">
+
+      {/* Image / placeholder */}
+      <div className="relative aspect-square overflow-hidden bg-[#f2f2f2]">
+        {/* Subtle radial highlight */}
+        <div className="absolute inset-0"
+          style={{ background: "radial-gradient(ellipse at 35% 35%, #ffffff 0%, #e8e8e8 100%)" }}
+        />
+        {/* Centered brand mark */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/70 shadow-sm">
+            <div className="h-6 w-6 rounded-full border-2 border-slate-300" />
+          </div>
         </div>
+        {/* Hover zoom overlay */}
+        <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/4 transition-colors duration-300" />
       </div>
-      <div className="p-6">
-        <h3 className="text-lg font-bold text-slate-900">{name}</h3>
-        <p className="mt-2 text-sm text-slate-500 leading-relaxed">{description}</p>
-        <div className="mt-4 flex items-center justify-between">
-          {price > 0 ? (
-            <span className="text-lg font-black text-blue-600">
-              {price.toLocaleString("sv-SE")} kr
-            </span>
-          ) : (
-            <span className="text-sm font-semibold text-slate-500">Kontakta oss för pris</span>
+
+      {/* Card body */}
+      <div className="flex flex-1 flex-col p-5 gap-3">
+
+        {/* SKU + name */}
+        <div>
+          {sku && (
+            <p className="font-mono text-[10px] tracking-widest text-slate-400 uppercase mb-1">{sku}</p>
           )}
-          <a href="/kontakt" className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-bold text-white hover:bg-blue-700 transition-colors">
+          <h3 className="text-sm font-bold text-slate-900 leading-snug">{name}</h3>
+        </div>
+
+        {/* Description */}
+        <p className="text-xs text-slate-400 leading-relaxed flex-1 line-clamp-2">{description}</p>
+
+        {/* Price + CTA */}
+        <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-3">
+          {price > 0 ? (
+            <span className="text-base font-black text-slate-900">{formatPrice(price)}</span>
+          ) : (
+            <span className="text-xs font-semibold text-slate-400">Pris på begäran</span>
+          )}
+          <Link
+            href={href}
+            className="shrink-0 rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-slate-700 transition-colors"
+          >
             Begär offert
-          </a>
+          </Link>
         </div>
       </div>
     </div>

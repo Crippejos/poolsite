@@ -10,7 +10,7 @@ const gallery = [
   { title: "Swimspa Duo", category: "Spabad", size: "large", color: "bg-neutral-400" },
   { title: "Vildmarksspa", category: "Spabad", size: "small", color: "bg-stone-400" },
   { title: "Utomhusbastu", category: "Bastu", size: "small", color: "bg-amber-200" },
-  { title: "Family Spa", category: "Spabad", size: "small", color: "bg-[#f5f5f5]0" },
+  { title: "Family Spa", category: "Spabad", size: "small", color: "bg-neutral-200" },
   { title: "Rostfri pool", category: "Pool", size: "large", color: "bg-zinc-300" },
   { title: "Bastu med utsikt", category: "Bastu", size: "small", color: "bg-amber-300" },
   { title: "Cover Seal pool", category: "Pool", size: "small", color: "bg-stone-500" },

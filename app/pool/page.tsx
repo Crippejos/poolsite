@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = { title: "Pool | PoolPro" };
 
@@ -25,8 +26,8 @@ export default function Page() {
       {/* ── Hero image ── */}
      <section className="pt-4 flex justify-center">
         <div className="w-[90%]">
-          <div className="relative overflow-hidden rounded-3xl" style={{ height: "90vh" }}>
-            <img src="/alla poler hero.png" alt="Pool hero" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="relative overflow-hidden rounded-3xl h-[90vh]">
+            <Image src="/alla poler hero.png" alt="Pool hero" fill className="object-cover" priority />
             <div className="absolute bottom-0 left-0 right-0 p-8">
               <div className="inline-block bg-white rounded-2xl px-6 py-3">
                 <h1 className="text-3xl font-black text-slate-900 lowercase tracking-tight">pool</h1>

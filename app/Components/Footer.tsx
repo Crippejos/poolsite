@@ -67,7 +67,7 @@ export default function Footer() {
               <div className="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center mb-4">
                 <div className="h-5 w-5 rounded-full bg-white opacity-80" />
               </div>
-              <p className="text-sm font-semibold text-slate-900 mb-3">PoolPro</p>
+              <p className="text-sm font-semibold text-slate-900 mb-3">Elite Pool & Spa</p>
               <div className="space-y-1 text-sm text-slate-500 mb-6">
                 <p>Stockholm</p>
                 <p>+46 08-123 45 67</p>
@@ -168,7 +168,7 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
-            <p className="text-xs text-slate-400">© {new Date().getFullYear()} PoolPro. Alla rättigheter förbehållna.</p>
+            <p className="text-xs text-slate-400">© {new Date().getFullYear()} Elite Pool & Spa. Alla rättigheter förbehållna.</p>
           </div>
 
         </div>

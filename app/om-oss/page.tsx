@@ -36,7 +36,7 @@ const team = [
     role: "Telefonist och kundmottagning",
     email: "anders@poolpro.se",
     bg1: "bg-slate-300",
-    bg2: "bg-[#f5f5f5]0",
+    bg2: "bg-slate-300",
   },
   {
     name: "Kristoffer Svensson",
@@ -84,13 +84,6 @@ export default function Page() {
       <section className="border-t border-slate-100 px-6 py-20 sm:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-3xl font-black text-slate-900 mb-10">Team</h2>
-
-          <style>{`
-            .team-card .img2 { opacity: 0; transition: opacity 0.4s ease; }
-            .team-card:hover .img2 { opacity: 1; }
-            .team-card:hover .img1 { opacity: 0; }
-            .img1 { transition: opacity 0.4s ease; }
-          `}</style>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {team.map((member) => (
