@@ -44,6 +44,7 @@ const tjansterLinks = [
   { label: "Alla tjänster",         href: "/tjanster" },
   { label: "Helentreprenad",        href: "/helentreprenad" },
   { label: "Poolbyggnation",        href: "/pool" },
+  { label: "Serviceavtal pool",     href: "/pool/serviceavtal" },
   { label: "Serviceavtal spabad",   href: "/spabad/serviceavtal" },
   { label: "Service & underhåll",   href: "/kontakt" },
   { label: "Renovering",            href: "/kontakt" },
