@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu, X, Search, ShoppingCart, MessageCircle } from "lucide-react";
+import { ChevronDown, Menu, X, Search, ShoppingCart, ClipboardList } from "lucide-react";
 import SearchOverlay from "./SearchOverlay";
 import { useCart } from "./CartContext";
 
@@ -333,7 +333,7 @@ export default function Navbar() {
         aria-label="Begär offert"
         className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 text-white shadow-2xl hover:bg-slate-700 transition-colors ${floatAnim === "in" ? "water-blob-in" : "water-blob-out"}`}
       >
-        <MessageCircle className="h-6 w-6" />
+        <ClipboardList className="h-6 w-6" />
       </Link>
     )}
     </>
