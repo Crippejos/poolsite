@@ -115,9 +115,9 @@ export default function ServiceavtalPage() {
                     </div>
                   )}
 
-                  <div className="p-8 pt-10">
+                  <div className="p-7 pt-10 flex flex-col flex-1">
                     {/* Tier badge */}
-                    <div className="flex items-center gap-2 mb-6">
+                    <div className="flex items-center gap-2 mb-5">
                       <div className="h-2.5 w-2.5 rounded-full" style={{ background: plan.color }} />
                       <span className="text-sm font-black uppercase tracking-widest" style={{ color: popular ? plan.color : plan.color }}>
                         {plan.name}
@@ -126,23 +126,23 @@ export default function ServiceavtalPage() {
 
                     {/* Price */}
                     <div className="mb-1">
-                      <span className={`text-5xl font-black ${popular ? "text-white" : "text-slate-900"}`}>
+                      <span className={`text-4xl font-black ${popular ? "text-white" : "text-slate-900"}`}>
                         {formatPrice(plan.price)}
                       </span>
                       <span className={`text-sm ml-1 ${popular ? "text-slate-400" : "text-slate-400"}`}>kr/mån</span>
                     </div>
-                    <p className={`text-xs mb-8 ${popular ? "text-slate-500" : "text-slate-400"}`}>
+                    <p className={`text-xs mb-7 ${popular ? "text-slate-500" : "text-slate-400"}`}>
                       {plan.visits} besök/mån · {formatPrice(plan.pricePerVisit)} kr/besök
                     </p>
 
                     {/* Features */}
-                    <ul className="space-y-3 mb-10">
+                    <ul className="space-y-2.5 mb-8 flex-1">
                       {[
                         ...features.filter(f => plan.id === "brons" ? f.brons : plan.id === "silver" ? f.silver : f.guld)
                       ].map(f => (
-                        <li key={f.text} className="flex items-start gap-3">
-                          <div className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${popular ? "bg-white/10" : "bg-slate-100"}`}>
-                            <Check className={`h-3 w-3 ${popular ? "text-white" : "text-slate-700"}`} strokeWidth={3} />
+                        <li key={f.text} className="flex items-start gap-2.5">
+                          <div className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${popular ? "bg-white/10" : "bg-slate-100"}`}>
+                            <Check className={`h-2.5 w-2.5 ${popular ? "text-white" : "text-slate-700"}`} strokeWidth={3} />
                           </div>
                           <span className={`text-xs leading-snug ${popular ? "text-slate-300" : "text-slate-600"}`}>{f.text}</span>
                         </li>
@@ -151,7 +151,7 @@ export default function ServiceavtalPage() {
 
                     <button
                       onClick={() => setSelectedPlan(plan)}
-                      className={`w-full rounded-2xl py-3.5 text-sm font-black tracking-wide transition-all ${
+                      className={`w-full rounded-2xl py-3 text-sm font-black tracking-wide transition-all ${
                         popular
                           ? "bg-white text-slate-900 hover:bg-slate-100"
                           : "bg-slate-900 text-white hover:bg-slate-700"
@@ -160,7 +160,7 @@ export default function ServiceavtalPage() {
                       Teckna avtal
                     </button>
 
-                    <p className={`text-center text-[10px] mt-3 ${popular ? "text-slate-600" : "text-slate-400"}`}>
+                    <p className={`text-center text-[10px] mt-2.5 ${popular ? "text-slate-600" : "text-slate-400"}`}>
                       Extra besök {formatPrice(plan.pricePerVisit)} kr/besök
                     </p>
                   </div>
