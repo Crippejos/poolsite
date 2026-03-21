@@ -3,8 +3,8 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const TO   = "order@elitepoolochspa.se"; // update if needed
-const FROM = "Elite Pool & Spa <noreply@elitepoolochspa.se>"; // must be verified in Resend
+const TO   = "order@elitepoolochspa.se";
+const FROM = "Elite Pool & Spa <onboarding@resend.dev>"; // switch to your domain once verified in Resend
 
 function fmt(n: number) { return n.toLocaleString("sv-SE") + " kr"; }
 
