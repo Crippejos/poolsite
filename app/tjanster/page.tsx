@@ -23,9 +23,9 @@ const services = [
   {
     num: "03",
     title: "Service & underhåll",
-    href: "/kontakt",
+    href: "/spabad/serviceavtal",
     description:
-      "Vi erbjuder löpande underhåll, felsökning, reparationer samt öppning och stängning inför säsongen. Serviceavtal eller enstaka uppdrag — vi anpassar oss efter dina behov.",
+      "Vi erbjuder löpande underhåll, felsökning, reparationer samt öppning och stängning inför säsongen. Teckna serviceavtal direkt online — Brons, Silver eller Guld.",
     tags: ["Serviceavtal", "Reparationer", "Vattenkvalitet"],
   },
   {
