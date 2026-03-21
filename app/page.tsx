@@ -101,19 +101,22 @@ const serviceData = [
     title: "Poolbyggnation",
     href: "/pool",
     description: "Vi erbjuder kompletta helhetslösningar inom pool, både för nybyggnationer och renoveringar av befintliga poolanläggningar. Hos Elite Pool & Spa får du en trygg partner som tar ansvar för hela projektet - från första idé till färdig pool. Vi hjälper till med planering, utformning och teknikval samt samordnar vid behov underentreprenörer såsom elektriker, snickare och andra yrkesgrupper. På så sätt får du en smidig process med en tydlig kontakt genom hela projektet.",
-    bg: "bg-slate-400",
+    bg: "bg-slate-700",
+    image: "/services/poolbyggnation.jpg",
   },
   {
     title: "Helentreprenad",
     href: "/helentreprenad",
     description: "Som helentreprenör tar vi ansvar för hela din poolanläggning — från mark till färdig pool. Vi koordinerar alla underentreprenörer och leverantörer. Du får en enda kontaktpunkt för hela projektet.",
-    bg: "bg-stone-400",
+    bg: "bg-stone-700",
+    image: "/services/helentreprenad.jpg",
   },
   {
     title: "Service",
     href: "/kontakt",
-    description: "Vi erbjuder professionell service för pool och spabad i hela Stockholmsområdet. Vår service omfattar allt från löpande underhåll till felsökning, reparationer samt öppning och stängning inför säsongen. Med regelbunden service säkerställer du att din anläggning fungerar optimalt, håller längre och ger en trygg badmiljö. Vi arbetar både med enstaka serviceuppdrag och återkommande serviceavtal, anpassade efter anläggningens behov och användning. Genom vår breda tekniska kompetens kan vi snabbt identifiera problem och föreslå hållbara lösningar, alltid med fokus på driftsäkerhet, vattenkvalitet och långsiktig funktion.",
-    bg: "bg-zinc-400",
+    description: "Vi erbjuder professionell service för pool och spabad i hela Stockholmsområdet. Vår service omfattar allt från löpande underhåll till felsökning, reparationer samt öppning och stängning inför säsongen. Med regelbunden service säkerställer du att din anläggning fungerar optimalt, håller längre och ger en trygg badmiljö. Vi arbetar både med enstaka serviceuppdrag och återkommande serviceavtal, anpassade efter anläggningens behov och användning.",
+    bg: "bg-zinc-700",
+    image: "/services/service.jpg",
   },
 ];
 
@@ -150,11 +153,18 @@ function ServiceSection() {
         {/* Image panel */}
         <Link href={current.href}>
           <div className={`relative overflow-hidden rounded-3xl ${current.bg} h-[260px] sm:h-[380px] lg:h-[500px] transition-all duration-300`}>
-            <div className="absolute inset-0 bg-black/20" />
-            <div className="absolute inset-0 flex items-center justify-center text-white/20 text-xs uppercase tracking-widest">
-              Tjänst bild här
-            </div>
-            <div className="absolute bottom-6 left-6 rounded-2xl bg-white/90 backdrop-blur p-6 max-w-sm">
+            {/* Background image */}
+            <Image
+              src={current.image}
+              alt={current.title}
+              fill
+              className="object-cover transition-opacity duration-500"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+            />
+            {/* Cinematic overlay matching hero style */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
+            {/* Info card */}
+            <div className="absolute bottom-6 left-6 right-6 sm:right-auto rounded-2xl bg-white/90 backdrop-blur-md p-6 max-w-sm shadow-xl">
               <h3 className="text-lg font-bold text-slate-900">{current.title}</h3>
               <p className="mt-2 text-sm text-slate-500 leading-relaxed line-clamp-3 sm:line-clamp-none">{current.description}</p>
             </div>

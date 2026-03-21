@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu, X, Search } from "lucide-react";
+import { ChevronDown, Menu, X, Search, ShoppingCart } from "lucide-react";
 import SearchOverlay from "./SearchOverlay";
+import { useCart } from "./CartContext";
 
 const poolLinks = [
   { label: "Alla pooler", href: "/pool" },
@@ -13,7 +14,7 @@ const poolLinks = [
   { label: "Rostfri stomme", href: "/pool/rostfri-stomme" },
   { label: "Poolöverdrag", href: "/pool/pooloverdrag", children: [
     { label: "Pooltak", href: "/pool/pooloverdrag/pooltak" },
-    { label: "Cover Seal", href: "/pool/pooloverdrag/cover-seal" },
+    { label: "Lamell", href: "/pool/pooloverdrag/lamell" },
   ]},
   { label: "Liner", href: "/pool/liner", children: [
     { label: "Standardmått", href: "/pool/liner/standardmatt" },
@@ -116,6 +117,7 @@ export default function Navbar() {
   const [mobileTjanster, setMobileTjanster] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
+  const { count: cartCount, setOpen: setCartOpen } = useCart();
 
   useEffect(() => {
     setMobileOpen(false);
@@ -188,6 +190,21 @@ export default function Navbar() {
             <span className="hidden lg:inline text-sm">Sök</span>
             <kbd className="hidden lg:inline-flex items-center gap-0.5 rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-xs font-mono text-slate-400">⌘K</kbd>
           </button>
+
+          {/* Cart button */}
+          <button
+            onClick={() => setCartOpen(true)}
+            className="relative p-2 rounded-full text-slate-600 hover:bg-[#f5f5f5] transition-all"
+            aria-label="Varukorg"
+          >
+            <ShoppingCart className="w-5 h-5" />
+            {cartCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-slate-900 text-[9px] font-bold text-white">
+                {cartCount > 9 ? "9+" : cartCount}
+              </span>
+            )}
+          </button>
+
           <Link href="/kontakt"
             className="hidden sm:inline-flex rounded-full border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5] transition-all">
             Begär offert

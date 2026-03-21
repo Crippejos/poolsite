@@ -8,6 +8,7 @@ export type SearchItem = {
   price: number;
   href: string;
   type: "product" | "category" | "page";
+  brand?: string;
 };
 
 export const searchData: SearchItem[] = [
@@ -24,15 +25,27 @@ export const searchData: SearchItem[] = [
   { id: "cat-thermoblock",    name: "Thermoblock",     sku: "KAT-TB",   category: "Pool",      categoryHref: "/pool",           description: "Energieffektiva pooler med isolerande thermoblockvägg.",                  price: 0, href: "/pool/thermoblock",             type: "category" },
   { id: "cat-gjuten",         name: "Gjuten stomme",   sku: "KAT-GS",   category: "Pool",      categoryHref: "/pool",           description: "Traditionell betongpool med gjuten stomme.",                              price: 0, href: "/pool/gjuten-stomme",           type: "category" },
   { id: "cat-rostfri",        name: "Rostfri stomme",  sku: "KAT-RS",   category: "Pool",      categoryHref: "/pool",           description: "Pool i maringrade rostfritt stål — extremt hållbar.",                    price: 0, href: "/pool/rostfri-stomme",          type: "category" },
-  { id: "cat-pooloverdrag",   name: "Poolöverdrag",    sku: "KAT-PO",   category: "Pool",      categoryHref: "/pool",           description: "Pooltak och Cover Seal för skydd och värmebevarande.",                   price: 0, href: "/pool/pooloverdrag",            type: "category" },
+  { id: "cat-pooloverdrag",   name: "Poolöverdrag",    sku: "KAT-PO",   category: "Pool",      categoryHref: "/pool",           description: "Pooltak och lamell för skydd och värmebevarande.",                       price: 0, href: "/pool/pooloverdrag",            type: "category" },
   { id: "cat-liner",          name: "Liner",           sku: "KAT-LN",   category: "Pool",      categoryHref: "/pool",           description: "Standardmått och svetsad liner för alla pooltyper.",                     price: 0, href: "/pool/liner",                   type: "category" },
-  { id: "cat-pooltak",        name: "Pooltak",         sku: "KAT-PT",   category: "Pool",      categoryHref: "/pool/pooloverdrag", description: "Pooltak från Gullberg & Jansson för hela säsongen.",                price: 0, href: "/pool/pooloverdrag/pooltak",    type: "category" },
-  { id: "cat-coverseal",      name: "Cover Seal",      sku: "KAT-CS",   category: "Pool",      categoryHref: "/pool/pooloverdrag", description: "Cover Seal — lamelltäckning för energieffektiv pool.",              price: 0, href: "/pool/pooloverdrag/cover-seal", type: "category" },
+  { id: "cat-pooltak",        name: "Pooltak",         sku: "KAT-PT",   category: "Pool",      categoryHref: "/pool/pooloverdrag", description: "Pooltak från Gullberg & Jansson och CF Group för hela säsongen.",    price: 0, href: "/pool/pooloverdrag/pooltak",    type: "category" },
+  { id: "cat-lamell",         name: "Lamell",          sku: "KAT-LM",   category: "Pool",      categoryHref: "/pool/pooloverdrag", description: "Lamelltäcken från CF Group — elektriska och solcellsdrivna modeller.", price: 0, href: "/pool/pooloverdrag/lamell",     type: "category" },
   { id: "cat-black-edition",  name: "Black Edition",   sku: "KAT-BE",   category: "Spabad",    categoryHref: "/spabad",         description: "Exklusiva spabad i helsvart utförande med LED-belysning.",                price: 0, href: "/spabad/black-edition",         type: "category" },
   { id: "cat-swimspa",        name: "Swimspa",         sku: "KAT-SS",   category: "Spabad",    categoryHref: "/spabad",         description: "Kombinerad swimspa och spabad.",                                          price: 0, href: "/spabad/swimspa",               type: "category" },
   { id: "cat-vildmarksspa",   name: "Vildmarksspa",    sku: "KAT-VS",   category: "Spabad",    categoryHref: "/spabad",         description: "Klassisk vedeldad vildmarksspa i cederträ.",                              price: 0, href: "/spabad/vildmarksspa",          type: "category" },
   { id: "cat-family-spa",     name: "Family Spa",      sku: "KAT-FS",   category: "Spabad",    categoryHref: "/spabad",         description: "Rymlig familjespa för hela familjen.",                                    price: 0, href: "/spabad/family-spa",            type: "category" },
   { id: "cat-tillbehor",      name: "Tillbehör",       sku: "KAT-TL",   category: "Spabad",    categoryHref: "/spabad",         description: "Kemikalier, lock-lyftare och spa-tillbehör.",                             price: 0, href: "/spabad/tillbehor",             type: "category" },
+
+  // ── Brands ───────────────────────────────────────────────────────────────
+  { id: "brand-gullberg", name: "Gullberg & Jansson", sku: "BRAND-GJ", category: "Pool", categoryHref: "/pool/pooloverdrag", description: "Pooltak från Gullberg & Jansson — Nova Comfort Premium och Leia Premium.", price: 0, href: "/pool/pooloverdrag/pooltak", type: "page", brand: "Gullberg & Jansson" },
+  { id: "brand-cfgroup",  name: "CF Group",           sku: "BRAND-CF", category: "Pool", categoryHref: "/pool/pooloverdrag", description: "Lamelltäcken från CF Group — Tixit med solceller och elektrisk modell.",   price: 0, href: "/pool/pooloverdrag/lamell",  type: "page", brand: "CF Group" },
+
+  // ── Pool — Pooltak ────────────────────────────────────────────────────────
+  { id: "po-pt-001", name: "Nova Comfort Premium", sku: "GJ-NOVA", category: "Pool", categoryHref: "/pool/pooloverdrag/pooltak", description: "Lågt exklusivt pooltak i klarplast med fördelade sektioner, skjutdörr och förlängningsskenor. Anpassas efter din pools storlek.", price: 0, href: "/pool/pooloverdrag/pooltak", type: "product", brand: "Gullberg & Jansson" },
+  { id: "po-pt-002", name: "Leia Premium",         sku: "GJ-LEIA", category: "Pool", categoryHref: "/pool/pooloverdrag/pooltak", description: "Exklusivt pooltak i klarplast med automatisk sektionslåsning och extra platta komfortskenor. Elegant låg profil.",              price: 0, href: "/pool/pooloverdrag/pooltak", type: "product", brand: "Gullberg & Jansson" },
+
+  // ── Pool — Lamell ─────────────────────────────────────────────────────────
+  { id: "po-lm-001", name: "Tixit Lamelltäcke med solceller", sku: "CF-TIXIT-SOL", category: "Pool", categoryHref: "/pool/pooloverdrag/lamell", description: "Modernt lamelltäcke med integrerade solceller och belysning i fäststolparna. Hållbart och energieffektivt alternativ.", price: 0, href: "/pool/pooloverdrag/lamell", type: "product", brand: "CF Group" },
+  { id: "po-lm-002", name: "Tixit Lamelltäcke elektrisk",     sku: "CF-TIXIT-EL",  category: "Pool", categoryHref: "/pool/pooloverdrag/lamell", description: "Elektriskt lamelltäcke med inbyggd belysning i stolparna och möjlighet till högtalaranpassning. Smidigt och modernt.",  price: 0, href: "/pool/pooloverdrag/lamell", type: "product", brand: "CF Group" },
 
   // ── Pool — Thermoblock ────────────────────────────────────────────────────
   { id: "pool-tb-001", name: "Thermoblock Standard 8×4",  sku: "POOL-TB-001", category: "Pool",   categoryHref: "/pool/thermoblock", description: "Energieffektiv pool med isolerande thermoblockvägg. Håller värmen längre och sänker driftskostnaderna.",  price: 89000,  href: "/pool/thermoblock", type: "product" },
@@ -85,7 +98,8 @@ export function searchItems(query: string): SearchItem[] {
       item.name.toLowerCase().includes(q) ||
       item.sku.toLowerCase().includes(q) ||
       item.category.toLowerCase().includes(q) ||
-      item.description.toLowerCase().includes(q)
+      item.description.toLowerCase().includes(q) ||
+      (item.brand !== undefined && item.brand.toLowerCase().includes(q))
     );
   });
 }
