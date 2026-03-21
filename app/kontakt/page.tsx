@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { ArrowRight, ArrowLeft, Check, Waves, Wrench, Building2, Loader2, Sun } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Waves, Wrench, Building2, Sun } from "lucide-react";
 
 /* ─── Types ─────────────────────────────────────────────────────────────── */
 type Category = "pool" | "spabad" | "helentreprenad" | "renovering";
@@ -149,7 +149,6 @@ export default function KontaktPage() {
   const [animDir, setAnimDir] = useState<"right" | "left">("right");
   const [animKey, setAnimKey] = useState(0);
   const [data, setData] = useState<FormData>(INIT);
-  const [submitting, setSubmitting] = useState(false);
 
   const set = useCallback(<K extends keyof FormData>(key: K, val: FormData[K]) =>
     setData(d => ({ ...d, [key]: val })), []);
@@ -161,17 +160,7 @@ export default function KontaktPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  async function submit() {
-    setSubmitting(true);
-    const price = calcPrice(data);
-    try {
-      await fetch("/api/send-quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, price }),
-      });
-    } catch {}
-    setSubmitting(false);
+  function submit() {
     go(4, "right");
   }
 
@@ -510,11 +499,10 @@ export default function KontaktPage() {
               )}
 
               {step === 3 && (
-                <button type="button" onClick={submit} disabled={!step3Ok || submitting}
+                <button type="button" onClick={submit} disabled={!step3Ok}
                   className="flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-bold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40 transition-all">
-                  {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
-                  {submitting ? "Skickar..." : "Skicka offertförfrågan"}
-                  {!submitting && <ArrowRight className="h-4 w-4" />}
+                  Se prisuppskattning
+                  <ArrowRight className="h-4 w-4" />
                 </button>
               )}
             </div>
