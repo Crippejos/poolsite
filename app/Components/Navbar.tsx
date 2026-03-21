@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu, X, Search, ShoppingCart } from "lucide-react";
+import { ChevronDown, Menu, X, Search, ShoppingCart, MessageCircle } from "lucide-react";
 import SearchOverlay from "./SearchOverlay";
 import { useCart } from "./CartContext";
 
@@ -61,7 +61,7 @@ function Dropdown({ items, onClose }: { label: string; items: DropdownItem[]; on
   return (
     <div className="absolute top-full left-0 mt-2 w-56 rounded-2xl border border-slate-100 bg-white shadow-xl z-50 overflow-hidden py-1">
       {items.map((item) => (
-        <div key={item.href}>
+        <div key={item.label}>
           <Link href={item.href} onClick={onClose}
             className={`flex items-center px-4 py-2.5 text-sm transition-colors hover:bg-[#f5f5f5] ${pathname === item.href ? "text-slate-900 font-semibold" : "text-slate-600"}`}>
             {item.label}
@@ -117,6 +117,10 @@ export default function Navbar() {
   const [mobileGrillar, setMobileGrillar] = useState(false);
   const [mobileTjanster, setMobileTjanster] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
+  const [floatShown, setFloatShown] = useState(false);
+  const [floatAnim, setFloatAnim] = useState<"in" | "out">("in");
+  const lastScrollY = useRef(0);
   const pathname = usePathname();
   const { count: cartCount, setOpen: setCartOpen } = useCart();
 
@@ -127,6 +131,38 @@ export default function Navbar() {
     setMobileGrillar(false);
     setMobileTjanster(false);
   }, [pathname]);
+
+  // Scroll-aware hide/show + floating button
+  useEffect(() => {
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y < 80) {
+          setNavVisible(true);
+          if (floatShown) {
+            setFloatAnim("out");
+            setTimeout(() => setFloatShown(false), 380);
+          }
+        } else if (y > lastScrollY.current + 6) {
+          setNavVisible(false);
+          setFloatShown(true);
+          setFloatAnim("in");
+        } else if (y < lastScrollY.current - 6) {
+          setNavVisible(true);
+          setFloatAnim("out");
+          setTimeout(() => setFloatShown(false), 380);
+        }
+        lastScrollY.current = y;
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [floatShown]);
 
   // Global Cmd+K / Ctrl+K shortcut
   useEffect(() => {
@@ -143,7 +179,7 @@ export default function Navbar() {
   return (
     <>
     <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
-    <header className="sticky top-0 z-40 w-full bg-white border-b border-slate-100">
+    <header className={`fixed top-0 z-40 w-full bg-white border-b border-slate-100 transition-transform duration-300 ease-in-out ${navVisible ? "translate-y-0" : "-translate-y-full"}`}>
       <div className="flex h-14 w-full items-center justify-between px-6 lg:px-12">
 
         {/* Logo */}
@@ -289,6 +325,17 @@ export default function Navbar() {
         </div>
       )}
     </header>
+
+    {/* Floating "Begär offert" button — appears when navbar is hidden */}
+    {floatShown && (
+      <Link
+        href="/kontakt"
+        aria-label="Begär offert"
+        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 text-white shadow-2xl hover:bg-slate-700 transition-colors ${floatAnim === "in" ? "water-blob-in" : "water-blob-out"}`}
+      >
+        <MessageCircle className="h-6 w-6" />
+      </Link>
+    )}
     </>
   );
 }

@@ -41,3 +41,32 @@ body {
 .team-card:hover .img2 { opacity: 1; }
 .team-card:hover .img1 { opacity: 0; }
 .img1 { transition: opacity 0.4s ease; }
+
+/* Form step transitions */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.step-in-right { animation: slideInRight 0.25s ease-out both; }
+.step-in-left  { animation: slideInLeft  0.25s ease-out both; }
+
+/* Floating CTA water-blob morph */
+@keyframes waterBlobIn {
+  0%   { transform: scale(0.08) translateY(40px); border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; opacity: 0; }
+  35%  { transform: scale(1.12) translateY(-6px);  border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%; opacity: 0.85; }
+  65%  { transform: scale(0.94) translateY(4px);   border-radius: 70% 30% 55% 45% / 30% 70% 40% 60%; opacity: 1; }
+  82%  { transform: scale(1.04) translateY(-2px);  border-radius: 50% 50% 50% 50%; }
+  100% { transform: scale(1)    translateY(0);     border-radius: 50%; opacity: 1; }
+}
+@keyframes waterBlobOut {
+  0%   { transform: scale(1)    translateY(0);    border-radius: 50%; opacity: 1; }
+  25%  { transform: scale(1.1)  translateY(-4px); border-radius: 60% 40% 40% 60% / 50% 60% 40% 50%; opacity: 0.9; }
+  60%  { transform: scale(0.6)  translateY(10px); border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%; opacity: 0.5; }
+  100% { transform: scale(0.05) translateY(30px); border-radius: 60% 40% 60% 40%; opacity: 0; }
+}
+.water-blob-in  { animation: waterBlobIn  0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.water-blob-out { animation: waterBlobOut 0.38s ease-in forwards; }
