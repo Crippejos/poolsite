@@ -84,7 +84,7 @@ export default function ServiceSignupModal({ plan, onClose }: Props) {
       await fetch("/api/serviceavtal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan: plan.name, price: plan.price, form, addons }),
+        body: JSON.stringify({ plan: plan?.name, price: plan?.price, form, addons }),
       });
     } catch {}
     setSubmitting(false);
