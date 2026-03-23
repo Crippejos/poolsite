@@ -10,7 +10,7 @@ function formatPrice(n: number) {
 }
 
 export default function CartDrawer() {
-  const { items, open, setOpen, removeItem, updateQty, subtotal, count, clearCart } = useCart();
+  const { items, open, setOpen, removeItem, updateQty, subtotal, count, clearCart, checkoutUrl } = useCart();
 
   const hasPriceOnRequest = items.some((i) => i.price === 0);
   const allPriced = items.length > 0 && items.every((i) => i.price > 0);
@@ -158,13 +158,22 @@ export default function CartDrawer() {
 
             {/* Primary CTA */}
             <div className="space-y-2">
-              <Link
-                href="/kontakt"
-                onClick={() => setOpen(false)}
-                className="flex w-full items-center justify-center rounded-full bg-slate-900 py-3 text-sm font-bold text-white hover:bg-slate-700 transition-all"
-              >
-                {hasPriceOnRequest ? "Begär offert" : "Gå till kassan"}
-              </Link>
+              {hasPriceOnRequest || !checkoutUrl ? (
+                <Link
+                  href="/kontakt"
+                  onClick={() => setOpen(false)}
+                  className="flex w-full items-center justify-center rounded-full bg-slate-900 py-3 text-sm font-bold text-white hover:bg-slate-700 transition-all"
+                >
+                  {hasPriceOnRequest ? "Begär offert" : "Gå till kassan"}
+                </Link>
+              ) : (
+                <a
+                  href={checkoutUrl}
+                  className="flex w-full items-center justify-center rounded-full bg-slate-900 py-3 text-sm font-bold text-white hover:bg-slate-700 transition-all"
+                >
+                  Gå till kassan
+                </a>
+              )}
               <button
                 onClick={() => setOpen(false)}
                 className="flex w-full items-center justify-center rounded-full border border-slate-200 py-3 text-sm font-semibold text-slate-600 hover:bg-[#f5f5f5] transition-all"

@@ -11,6 +11,7 @@ import {
   poolkonstruktion,
   uppvarmning,
   vattenrening,
+  pahlenPrice,
   type PahlenProduct,
 } from "@/lib/pahlenProducts";
 import { use } from "react";
@@ -39,17 +40,33 @@ export default function PahlenProductPage({ params }: { params: Promise<{ sku: s
 
   const { product, category } = match;
   const [added, setAdded] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState(product.variants?.[0] ?? null);
   const { addItem, setOpen } = useCart();
-  const formattedPrice = formatPrice(product.price);
+
+  const displayPrice = selectedVariant
+    ? pahlenPrice(selectedVariant.price)
+    : product.price;
+  const displaySku = selectedVariant?.sku ?? product.sku;
+  const formattedPrice = formatPrice(displayPrice);
 
   function handleAddToCart() {
-    addItem({ name: product.name, sku: product.sku, price: product.price ?? 0, options: {} });
+    addItem({
+      name: product.name,
+      sku: displaySku,
+      price: displayPrice ?? 0,
+      options: selectedVariant ? { Modell: selectedVariant.label } : {},
+    });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   }
 
   function handleBuyNow() {
-    addItem({ name: product.name, sku: product.sku, price: product.price ?? 0, options: {} });
+    addItem({
+      name: product.name,
+      sku: displaySku,
+      price: displayPrice ?? 0,
+      options: selectedVariant ? { Modell: selectedVariant.label } : {},
+    });
     setOpen(true);
   }
 
@@ -97,11 +114,33 @@ export default function PahlenProductPage({ params }: { params: Promise<{ sku: s
                 >
                   <ArrowLeft className="h-3.5 w-3.5" /> {category.label}
                 </Link>
-                <span className="font-mono text-[10px] text-slate-400 uppercase tracking-widest">{product.sku}</span>
+                <span className="font-mono text-[10px] text-slate-400 uppercase tracking-widest">{displaySku}</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight mb-4">{product.name}</h1>
               <p className="text-slate-500 text-sm leading-relaxed mb-6">Pahlén originalreservdel. Passar till Pahlén-anläggningar — kontakta oss om du är osäker på kompatibilitet.</p>
+
+              {/* Variant selector */}
+              {product.variants && (
+                <div className="mb-6">
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-2">Modell</p>
+                  <div className="flex flex-wrap gap-2">
+                    {product.variants.map(v => (
+                      <button
+                        key={v.sku}
+                        onClick={() => setSelectedVariant(v)}
+                        className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+                          selectedVariant?.sku === v.sku
+                            ? "bg-slate-900 text-white"
+                            : "border border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-700"
+                        }`}
+                      >
+                        {v.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Price */}
               <div className="mb-8">
@@ -159,8 +198,8 @@ export default function PahlenProductPage({ params }: { params: Promise<{ sku: s
           <h2 className="text-2xl font-black text-slate-900 mb-8">Specifikationer</h2>
           <div className="rounded-2xl border border-slate-100 overflow-hidden">
             {[
-              ["Artikelnummer", product.sku],
-              ["Benämning", product.name],
+              ["Artikelnummer", displaySku],
+              ["Benämning", product.name + (selectedVariant ? ` ${selectedVariant.label}` : "")],
               ["Kategori", category.label],
               ["Varumärke", "Pahlén"],
               ["Pris", formattedPrice ?? "På begäran"],

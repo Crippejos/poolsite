@@ -16,6 +16,8 @@ export type Product = {
   longDescription?: string;
   features?: string[];
   specs?: Record<string, string>;
+  /** Shopify variant GID — set once product is published in Shopify */
+  shopifyVariantId?: string;
 };
 
 const allProducts: Product[] = [
