@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <PageShell
       title="Bastu"
-      description="Fristående utomhusbastur i nordisk tradition — byggda för det svenska klimatet."
+      description="Med en bastu skapar du en naturlig plats för avkoppling och välmående. Vi erbjuder bastulösningar för både inomhus- och utomhusbruk, anpassade efter din miljö och dina önskemål. Oavsett om du vill ha en traditionell bastu eller en modern variant hjälper vi dig att skapa en helhetslösning som kompletterar din pool- och spa-anläggning."
       breadcrumbs={[{ label: "Bastu" }]}
       badge="Bastu"
       count={products.length}
