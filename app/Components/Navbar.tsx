@@ -20,6 +20,7 @@ const poolLinks = [
     { label: "Standardmått", href: "/pool/liner/standardmatt" },
     { label: "Svetsad liner", href: "/pool/liner/svetsad-liner" },
   ]},
+  { label: "Tillbehör & Reservdelar", href: "/pool/tillbehor" },
 ];
 
 const spadbadLinks = [
@@ -301,7 +302,6 @@ export default function Navbar() {
 
           <Link href="/bastu" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Bastu</Link>
           <Link href="/tillbehor" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Tillbehör</Link>
-
           <button onClick={() => setMobileTjanster((v) => !v)}
             className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">
             Tjänster <ChevronDown className={`w-4 h-4 transition-transform ${mobileTjanster ? "rotate-180" : ""}`} />

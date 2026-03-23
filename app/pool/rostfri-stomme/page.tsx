@@ -3,10 +3,9 @@ import ProductCard from "../../Components/ProductCard";
 
 export const metadata = { title: "Rostfri stomme | Elite Pool & Spa" };
 
-const products = [
-  { name: "Rostfri Stomme 316L",    sku: "POOL-RS-001", description: "Pool i maringrade 316L rostfritt stål. Extremt hållbar och underhållsfri.",              price: 195000 },
-  { name: "Rostfri Stomme Premium", sku: "POOL-RS-002", description: "Premiumpool i rostfritt stål med inbyggd LED och automatisk rengöring.",                  price: 275000 },
-];
+import { getProductsByCategory } from "@/lib/allProducts";
+
+const products = getProductsByCategory("/pool/rostfri-stomme");
 
 export default function Page() {
   return (
@@ -18,7 +17,7 @@ export default function Page() {
       count={products.length}
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => <ProductCard key={p.name} {...p} />)}
+        {products.map((p) => <ProductCard key={p.sku} {...p} href={`/produkt/${p.slug}`} />)}
       </div>
     </PageShell>
   );

@@ -1,12 +1,10 @@
 import PageShell from "../../Components/PageShell";
 import ProductCard from "../../Components/ProductCard";
+import { getProductsByCategory } from "@/lib/allProducts";
 
 export const metadata = { title: "Vildmarksspa | Elite Pool & Spa" };
 
-const products = [
-  { name: "Vildmarksspa Vedeldad", sku: "SPA-VS-001", description: "Klassisk vedeldad vildmarksspa i cederträ. Ingen el behövs.",              price: 28000 },
-  { name: "Vildmarksspa Stor",     sku: "SPA-VS-002", description: "Större vedeldad vildmarksspa för upp till 8 personer.",                    price: 42000 },
-];
+const products = getProductsByCategory("/spabad/vildmarksspa");
 
 export default function Page() {
   return (
@@ -18,7 +16,7 @@ export default function Page() {
       count={products.length}
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => <ProductCard key={p.name} {...p} />)}
+        {products.map((p) => <ProductCard key={p.sku} {...p} href={`/produkt/${p.slug}`} />)}
       </div>
     </PageShell>
   );

@@ -1,13 +1,10 @@
 import PageShell from "../Components/PageShell";
 import ProductCard from "../Components/ProductCard";
+import { getProductsByCategory } from "@/lib/allProducts";
 
 export const metadata = { title: "Bastu | Elite Pool & Spa" };
 
-const products = [
-  { name: "Utomhusbastu Classic",       sku: "BST-001", description: "Fristående utomhusbastu i obehandlad nordic spruce. Rymmer 4–6 personer med elbastu-aggregat.", price: 42000 },
-  { name: "Utomhusbastu Compact",       sku: "BST-002", description: "Kompakt utomhusbastu för 2–3 personer. Perfekt för mindre tomter — enkel att montera.",        price: 28000 },
-  { name: "Bastu med omklädningsrum",   sku: "BST-003", description: "Rymlig bastu med separat omklädningsdel och veranda. Komplett lösning för din trädgård.",       price: 68000 },
-];
+const products = getProductsByCategory("/bastu");
 
 export default function Page() {
   return (
@@ -19,7 +16,9 @@ export default function Page() {
       count={products.length}
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => <ProductCard key={p.name} {...p} />)}
+        {products.map((p) => (
+          <ProductCard key={p.sku} {...p} href={`/produkt/${p.slug}`} />
+        ))}
       </div>
     </PageShell>
   );

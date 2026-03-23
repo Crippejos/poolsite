@@ -1,12 +1,10 @@
 import PageShell from "../../Components/PageShell";
 import ProductCard from "../../Components/ProductCard";
+import { getProductsByCategory } from "@/lib/allProducts";
 
 export const metadata = { title: "Swimspa | Elite Pool & Spa" };
 
-const products = [
-  { name: "Swimspa Duo 550", sku: "SPA-SS-001", description: "Kombinerad swimspa och spabad. Simma och koppla av i samma enhet.",                    price: 155000 },
-  { name: "Swimspa Pro 750", sku: "SPA-SS-002", description: "Professionell swimspa med kraftfull motström för riktigt simträning.",                  price: 210000 },
-];
+const products = getProductsByCategory("/spabad/swimspa");
 
 export default function Page() {
   return (
@@ -18,7 +16,7 @@ export default function Page() {
       count={products.length}
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => <ProductCard key={p.name} {...p} />)}
+        {products.map((p) => <ProductCard key={p.sku} {...p} href={`/produkt/${p.slug}`} />)}
       </div>
     </PageShell>
   );

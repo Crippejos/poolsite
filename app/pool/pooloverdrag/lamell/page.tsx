@@ -1,58 +1,10 @@
 import PageShell from "../../../Components/PageShell";
 import ProductCard from "../../../Components/ProductCard";
+import { getProductsByCategory } from "@/lib/allProducts";
 
 export const metadata = { title: "Lamell | Elite Pool & Spa" };
 
-const products = [
-  {
-    name: "Tixit Lamelltäcke med solceller",
-    sku: "CF-TIXIT-SOL",
-    description: "Modernt lamelltäcke med integrerade solceller och LED-belysning i fäststolparna. Solcellerna driver systemet hållbart — ett ekologiskt och energieffektivt alternativ för din pool.",
-    price: 0,
-    images: [
-      "/products/tixit-sol.jpg",
-      "/products/tixit-1.jpg",
-      "/products/tixit-5.jpg",
-      "/products/tixit-11.jpg",
-    ],
-    options: [
-      {
-        label: "Färg",
-        values: ["Antracit", "Silver", "Vit"],
-      },
-      {
-        label: "Belysning",
-        values: ["Ingår (solcellsdriven)"],
-      },
-    ],
-  },
-  {
-    name: "Tixit Lamelltäcke elektrisk",
-    sku: "CF-TIXIT-EL",
-    description: "Elektriskt lamelltäcke med inbyggd belysning i fäststolparna och möjlighet till högtalaranpassning. Modern design som kombinerar funktion och estetik.",
-    price: 0,
-    images: [
-      "/products/tixit-el.jpg",
-      "/products/tixit-2.jpg",
-      "/products/tixit-4.jpg",
-      "/products/tixit-7.jpg",
-    ],
-    options: [
-      {
-        label: "Färg",
-        values: ["Antracit", "Silver", "Vit"],
-      },
-      {
-        label: "Belysning",
-        values: ["Ingår (el-driven)"],
-      },
-      {
-        label: "Tillval",
-        values: ["Utan högtalare", "Med högtalare"],
-      },
-    ],
-  },
-];
+const products = getProductsByCategory("/pool/pooloverdrag/lamell");
 
 export default function Page() {
   return (
@@ -79,7 +31,7 @@ export default function Page() {
       {/* Products */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((p) => (
-          <ProductCard key={p.sku} {...p} />
+          <ProductCard key={p.sku} {...p} href={`/produkt/${p.slug}`} />
         ))}
       </div>
     </PageShell>
