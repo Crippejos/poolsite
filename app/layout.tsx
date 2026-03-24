@@ -21,7 +21,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={urbanist.className}>
         <Providers>
           <Navbar />
-          {children}
+          <div className="pt-14">
+            {children}
+          </div>
           <Footer />
         </Providers>
       </body>

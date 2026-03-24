@@ -1,3 +1,5 @@
+import Breadcrumb from "@/app/Components/Breadcrumb";
+
 export const metadata = { title: "Showroom | PoolPro" };
 
 const categories = ["Alla", "Pool", "Spabad", "Bastu"];
@@ -21,8 +23,15 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-white">
 
+      {/* ── Breadcrumb ── */}
+      <div className="px-6 pt-4 sm:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <Breadcrumb crumbs={[{ label: "Showroom" }]} />
+        </div>
+      </div>
+
       {/* ── Hero ── */}
-      <section className="px-6 pt-16 pb-10 sm:px-12 lg:px-20">
+      <section className="px-6 pt-10 pb-10 sm:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Galleri</p>
           <h1 className="text-4xl font-black text-slate-900 sm:text-5xl">Showroom</h1>

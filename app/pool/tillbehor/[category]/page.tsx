@@ -13,26 +13,14 @@ import {
 
 // ── Derived product groups ──────────────────────────────────────────────────
 
-/** Filtrering + värmepump complete packages */
+const ATTRACTION_GROUPS = ["Jet Swim", "Massage", "Vattenfall & Kanoner"];
+const LIGHTING_GROUPS   = ["Belysning Marine", "Belysning Classic", "Inbyggnadsdetaljer"];
+const DOSING_GROUPS     = ["MiniMaster", "Autodos", "UV-rening", "Saltklorinatorer", "ASEKO"];
+
 const komplettaPaket: PahlenProduct[] = [
   ...cirkulation.filter(p => /^343/.test(p.sku)),
   ...uppvarmning.filter(p => /^344/.test(p.sku)),
 ];
-
-/** Jet Swim, massage, vattenfall, kanoner — everything water-attraction */
-const vattenattraktioner: PahlenProduct[] = bassangutrustning;
-
-/** All lighting and built-in hardware */
-const belysningOchInbyggnad: PahlenProduct[] = bassangutrustning;
-
-/** Dosing, measurement, UV, salt — water treatment equipment */
-const matDosering: PahlenProduct[] = vattenrening;
-
-/** Pool care & test instruments */
-const poolvard: PahlenProduct[] = [];
-
-/** Kemikalier — placeholder until dedicated array is added */
-const kemikalier: PahlenProduct[] = [];
 
 // ── Price-lifted wrappers (apply 1.25 markup) ──────────────────────────────
 
@@ -60,7 +48,7 @@ const categoryMap: Record<string, { label: string; desc: string; products: Pahle
   vattenattraktioner: {
     label: "Vattenattraktioner",
     desc: "Jet Swim, massagemunstycken, vattenfall och kanoner — skapa rörelse och upplevelse i din pool.",
-    products: withMarkup(vattenattraktioner),
+    products: withMarkup(bassangutrustning.filter(p => ATTRACTION_GROUPS.includes(p.group ?? ""))),
   },
   uppvarmning: {
     label: "Uppvärmning",
@@ -70,27 +58,27 @@ const categoryMap: Record<string, { label: string; desc: string; products: Pahle
   belysning: {
     label: "Belysning & inbyggnadsdetaljer",
     desc: "LED-armaturer, skimmers, inlopp, bräddavlopp och inbyggnadsdetaljer från Pahlén Classic och Marine.",
-    products: withMarkup(belysningOchInbyggnad),
+    products: withMarkup(bassangutrustning.filter(p => LIGHTING_GROUPS.includes(p.group ?? ""))),
   },
   "mat-dosering": {
     label: "Mät- & doserutrustning",
     desc: "Autodos, MiniMaster, UV-anläggningar, elektroder och doseringssystem för kemikalier.",
-    products: withMarkup(matDosering),
+    products: withMarkup(vattenrening.filter(p => DOSING_GROUPS.includes(p.group ?? ""))),
   },
   poolvard: {
     label: "Poolvård och testinstrument",
     desc: "Testutrustning, bottensugare, poolborstar och underhållsredskap för din pool.",
-    products: withMarkup(poolvard),
+    products: withMarkup([]),
   },
   poolstommar: {
     label: "Poolstommar",
-    desc: "Liner, SBM-stommar, PoolGuard, Aqua Roll och konstruktionsmaterial för poolbygge.",
+    desc: "Liner, SBM-stommar, PoolGuard, Aqua Roll, Isoblock, solfolie, trappor och rör för poolbygge.",
     products: withMarkup(poolkonstruktion),
   },
   kemikalier: {
     label: "Kemikalier",
     desc: "Poolkemikalier för balanserat och rent vatten under hela säsongen.",
-    products: withMarkup(kemikalier),
+    products: withMarkup([]),
   },
   // Legacy slugs kept for backwards compatibility
   bassangutrustning: {

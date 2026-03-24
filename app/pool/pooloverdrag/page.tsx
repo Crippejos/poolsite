@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Breadcrumb from "@/app/Components/Breadcrumb";
 
 export const metadata = { title: "Poolöverdrag | Elite Pool & Spa" };
 
@@ -28,6 +29,13 @@ const brands = [
 export default function Page() {
   return (
     <main className="min-h-screen bg-white">
+
+      {/* ── Breadcrumb ── */}
+      <div className="px-6 pt-4 sm:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <Breadcrumb crumbs={[{ label: "Pool", href: "/pool" }, { label: "Poolöverdrag" }]} />
+        </div>
+      </div>
 
       {/* ── Hero ── */}
       <section className="pt-4 flex justify-center">

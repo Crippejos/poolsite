@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useState } from "react";
 import { ArrowLeft, ShoppingCart, Zap, Check } from "lucide-react";
+import Breadcrumb from "@/app/Components/Breadcrumb";
 import { useCart } from "@/app/Components/CartContext";
 import {
   bassangutrustning,
@@ -75,14 +76,12 @@ export default function PahlenProductPage({ params }: { params: Promise<{ sku: s
 
       {/* ── Breadcrumb ── */}
       <div className="border-b border-slate-100 px-6 py-4 sm:px-12 lg:px-20">
-        <div className="mx-auto max-w-7xl flex items-center gap-1 text-xs text-slate-400 flex-wrap">
-          <Link href="/" className="hover:text-slate-700 transition-colors">Hem</Link>
-          <span className="mx-1 opacity-40">/</span>
-          <Link href="/pool/tillbehor" className="hover:text-slate-700 transition-colors">Tillbehör & Reservdelar</Link>
-          <span className="mx-1 opacity-40">/</span>
-          <Link href={`/pool/tillbehor/${category.slug}`} className="hover:text-slate-700 transition-colors">{category.label}</Link>
-          <span className="mx-1 opacity-40">/</span>
-          <span className="text-slate-700 font-medium">{product.name}</span>
+        <div className="mx-auto max-w-7xl">
+          <Breadcrumb crumbs={[
+            { label: "Tillbehör & Reservdelar", href: "/pool/tillbehor" },
+            { label: category.label, href: `/pool/tillbehor/${category.slug}` },
+            { label: product.name },
+          ]} />
         </div>
       </div>
 

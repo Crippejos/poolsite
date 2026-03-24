@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Check, Minus, MapPin, Info } from "lucide-react";
 import ServiceSignupModal, { type ServicePlan } from "@/app/Components/ServiceSignupModal";
+import Breadcrumb from "@/app/Components/Breadcrumb";
 
 const plans: ServicePlan[] = [
   {
@@ -74,8 +75,15 @@ export default function ServiceavtalPage() {
     <>
       <ServiceSignupModal plan={selectedPlan} onClose={() => setSelectedPlan(null)} />
 
+      {/* ── Breadcrumb ── */}
+      <div className="px-6 pt-4 sm:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <Breadcrumb crumbs={[{ label: "Spabad", href: "/spabad" }, { label: "Serviceavtal" }]} />
+        </div>
+      </div>
+
       {/* Hero */}
-      <section className="bg-slate-900 pt-32 pb-20 px-6">
+      <section className="bg-slate-900 pt-20 pb-20 px-6">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4">Service & underhåll</p>
           <h1 className="text-5xl sm:text-6xl font-black text-white leading-none mb-6">

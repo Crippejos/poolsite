@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-
-type Crumb = { label: string; href?: string };
+import Breadcrumb, { type Crumb } from "./Breadcrumb";
 
 type Props = {
   title: string;
@@ -22,19 +20,9 @@ export default function PageShell({ title, description, breadcrumbs, badge, coun
 
           {/* Breadcrumbs */}
           {breadcrumbs && breadcrumbs.length > 0 && (
-            <nav className="mb-6 flex items-center gap-1 text-xs text-slate-400">
-              <Link href="/" className="hover:text-slate-700 transition-colors">Hem</Link>
-              {breadcrumbs.map((crumb, i) => (
-                <span key={i} className="flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 opacity-40" />
-                  {crumb.href ? (
-                    <Link href={crumb.href} className="hover:text-slate-700 transition-colors">{crumb.label}</Link>
-                  ) : (
-                    <span className="text-slate-700 font-medium">{crumb.label}</span>
-                  )}
-                </span>
-              ))}
-            </nav>
+            <div className="mb-6">
+              <Breadcrumb crumbs={breadcrumbs} />
+            </div>
           )}
 
           {/* Title row with editorial count */}

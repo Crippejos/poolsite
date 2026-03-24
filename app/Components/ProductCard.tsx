@@ -145,7 +145,7 @@ export default function ProductCard({
   );
 
   return (
-    <div className="group flex flex-col rounded-2xl bg-white border border-slate-100 overflow-hidden hover:shadow-lg hover:border-slate-200 transition-all duration-300">
+    <div className="group flex flex-col rounded-2xl bg-white border border-slate-100 overflow-hidden hover:shadow-lg hover:border-slate-200 transition-[box-shadow,border-color] duration-150">
 
       {/* ── Image carousel ── */}
       {href ? (
@@ -185,7 +185,7 @@ export default function ProductCard({
                     <button
                       key={val}
                       onClick={() => setSelected((s) => ({ ...s, [opt.label]: val }))}
-                      className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-all ${
+                      className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-colors duration-100 ${
                         selected[opt.label] === val
                           ? "bg-slate-900 text-white"
                           : "border border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-700"
@@ -211,7 +211,7 @@ export default function ProductCard({
           </div>
           <button
             onClick={handleAddToCart}
-            className={`flex w-full items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-all duration-200 ${
+            className={`flex w-full items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-colors duration-100 ${
               added
                 ? "bg-green-600 text-white"
                 : "bg-slate-900 text-white hover:bg-slate-700"
@@ -222,7 +222,7 @@ export default function ProductCard({
           </button>
           <button
             onClick={handleBuyNow}
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#f5f5f5] transition-all"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#f5f5f5] transition-colors duration-100"
           >
             <Zap className="h-3.5 w-3.5" />
             Köp nu

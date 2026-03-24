@@ -5,7 +5,13 @@ import { Search } from "lucide-react";
 import ProductCard from "./ProductCard";
 import { type PahlenProduct } from "@/lib/pahlenProducts";
 
-export default function ProductSearch({ products }: { products: PahlenProduct[] }) {
+export default function ProductSearch({
+  products,
+  descriptions,
+}: {
+  products: PahlenProduct[];
+  descriptions?: Record<string, string>;
+}) {
   const [query, setQuery] = useState("");
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
 
@@ -87,7 +93,7 @@ export default function ProductSearch({ products }: { products: PahlenProduct[] 
                 key={p.sku}
                 sku={p.sku}
                 name={p.name}
-                description="Pahlén originalreservdel"
+                description={descriptions?.[p.sku] ?? "Pahlén originalreservdel"}
                 price={p.price ?? 0}
                 href={`/produkt/pahlen/${encodeURIComponent(p.sku)}`}
                 options={p.variants ? [{ label: "Modell", values: p.variants.map(v => v.label) }] : []}

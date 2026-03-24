@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { ArrowRight, ArrowLeft, Check, Waves, Wrench, Building2, Sun } from "lucide-react";
+import Breadcrumb from "@/app/Components/Breadcrumb";
 
 /* ─── Types ─────────────────────────────────────────────────────────────── */
 type Category = "pool" | "spabad" | "helentreprenad" | "renovering";
@@ -180,8 +181,13 @@ export default function KontaktPage() {
   const price = calcPrice(data);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] px-4 pt-28 pb-20">
+    <div className="min-h-screen bg-[#f5f5f5] px-4 pt-4 pb-20">
       <div className="mx-auto max-w-xl">
+
+        {/* Breadcrumb */}
+        <div className="mb-6">
+          <Breadcrumb crumbs={[{ label: "Kontakt" }]} />
+        </div>
 
         {/* Header */}
         {step < 4 && (

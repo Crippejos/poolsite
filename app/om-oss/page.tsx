@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Breadcrumb from "@/app/Components/Breadcrumb";
 
 export const metadata = { title: "Om oss | PoolPro" };
 
@@ -50,6 +51,13 @@ const team = [
 export default function Page() {
   return (
     <main className="min-h-screen bg-white">
+
+      {/* ── Breadcrumb ── */}
+      <div className="px-6 pt-4 sm:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <Breadcrumb crumbs={[{ label: "Om oss" }]} />
+        </div>
+      </div>
 
       {/* ── About section ── */}
       <section className="px-6 py-20 sm:px-12 lg:px-20">

@@ -26,7 +26,7 @@ const poolLinks = [
     { label: "Vattenattraktioner",              href: "/pool/tillbehor/vattenattraktioner" },
     { label: "Uppvärmning",                     href: "/pool/tillbehor/uppvarmning" },
     { label: "Belysning & inbyggnadsdetaljer",  href: "/pool/tillbehor/belysning" },
-    { label: "Mät- & doserutrustning",          href: "/pool/tillbehor/mat-dosering" },
+    { label: "Mät- & doserutrustning",          href: "/pool/mat-och-doserutrustning" },
     { label: "Poolvård och testinstrument",     href: "/pool/tillbehor/poolvard" },
     { label: "Poolstommar",                     href: "/pool/tillbehor/poolstommar" },
     { label: "Kemikalier",                      href: "/pool/tillbehor/kemikalier" },
@@ -51,18 +51,6 @@ const grillarLinks = [
   { label: "Pelletsrök",   href: "/grillar/pellets" },
 ];
 
-const produkterLinks = [
-  { label: "Alla produkter",                 href: "/produkter" },
-  { label: "Kompletta poolpaket",            href: "/pool/tillbehor/kompletta-poolpaket" },
-  { label: "Rening och cirkulation",         href: "/pool/tillbehor/cirkulation" },
-  { label: "Vattenattraktioner",             href: "/pool/tillbehor/vattenattraktioner" },
-  { label: "Uppvärmning",                    href: "/pool/tillbehor/uppvarmning" },
-  { label: "Belysning & inbyggnadsdetaljer", href: "/pool/tillbehor/belysning" },
-  { label: "Mät- & doserutrustning",         href: "/pool/tillbehor/mat-dosering" },
-  { label: "Poolvård och testinstrument",    href: "/pool/tillbehor/poolvard" },
-  { label: "Poolstommar",                    href: "/pool/tillbehor/poolstommar" },
-  { label: "Kemikalier",                     href: "/pool/tillbehor/kemikalier" },
-];
 
 const tjansterLinks = [
   { label: "Alla tjänster",         href: "/tjanster" },
@@ -140,7 +128,6 @@ export default function Navbar() {
   const [mobilePool, setMobilePool] = useState(false);
   const [mobileSpabad, setMobileSpabad] = useState(false);
   const [mobileGrillar, setMobileGrillar] = useState(false);
-  const [mobileProdukter, setMobileProdukter] = useState(false);
   const [mobileTjanster, setMobileTjanster] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
@@ -155,7 +142,6 @@ export default function Navbar() {
     setMobilePool(false);
     setMobileSpabad(false);
     setMobileGrillar(false);
-    setMobileProdukter(false);
     setMobileTjanster(false);
   }, [pathname]);
 
@@ -224,7 +210,6 @@ export default function Navbar() {
           <DropdownTrigger label="Pool" href="/pool" items={poolLinks} />
           <DropdownTrigger label="Spabad" href="/spabad" items={spadbadLinks} />
           <DropdownTrigger label="Grillar" href="/grillar" items={grillarLinks} />
-          <DropdownTrigger label="Produkter" href="/produkter" items={produkterLinks} />
           <Link href="/bastu" className={`relative px-3 py-2 text-sm transition-colors after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-slate-900 after:transition-opacity ${pathname === "/bastu" ? "text-slate-900 font-semibold after:opacity-100" : "text-slate-500 hover:text-slate-900 after:opacity-0"}`}>
             Bastu
           </Link>
@@ -328,17 +313,6 @@ export default function Navbar() {
 
           <Link href="/bastu" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Bastu</Link>
 
-          <button onClick={() => setMobileProdukter((v) => !v)}
-            className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">
-            Produkter <ChevronDown className={`w-4 h-4 transition-transform ${mobileProdukter ? "rotate-180" : ""}`} />
-          </button>
-          {mobileProdukter && (
-            <div className="ml-4 space-y-1 border-l-2 border-slate-100 pl-3">
-              {produkterLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="block py-2 text-sm font-medium text-slate-600 hover:text-slate-900">{item.label}</Link>
-              ))}
-            </div>
-          )}
 
           <Link href="/tillbehor" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Tillbehör</Link>
           <button onClick={() => setMobileTjanster((v) => !v)}
