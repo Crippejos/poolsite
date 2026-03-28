@@ -2,44 +2,43 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Breadcrumb from "@/app/Components/Breadcrumb";
-import { poolkonstruktion } from "@/lib/pahlenProducts";
+import { bassangutrustning } from "@/lib/pahlenProducts";
 
-export const metadata: Metadata = { title: "Liner | Elite Pool & Spa" };
+export const metadata: Metadata = { title: "Vattenattraktioner | Elite Pool & Spa" };
 
-const linerProducts = poolkonstruktion.filter(p => p.group === "Liner");
-
-const standardCount = linerProducts.filter(p =>
-  (p.sku.startsWith("482") && !p.name.includes("Persia")) ||
-  p.name.includes("Linerpaket") ||
-  p.name.includes("Linertillbehörspaket") ||
-  ["43189","1820920","431431","431432","43144","43146","43148","43188","431890","431993","431994"].includes(p.sku)
-).length;
-
-const svetsadCount = linerProducts.filter(p =>
-  p.name.includes("Persia") || p.name.includes("gaveltrappa") || p.name.includes("tilläggskostnad")
-).length;
+const jetMassageCount   = bassangutrustning.filter(p => p.group === "Massage").length;
+const jetSwimCount      = bassangutrustning.filter(p => p.group === "Jet Swim").length;
+const vattenfallCount   = bassangutrustning.filter(p => p.group === "Vattenfall & Kanoner").length;
 
 const subcategories = [
   {
-    label: "Standardmått",
-    slug: "standardmatt",
-    count: standardCount,
-    desc: "Enfärgade och mönstrade liners i standardstorlekar från 3×6 m till 5×10 m — kompletta linerpaket och tillbehör.",
+    label: "Jet Massage",
+    slug: "jet-massage",
+    count: jetMassageCount,
+    desc: "Massagemunstycken i Classic och Marine-utförande — Soft, Medium och kompletta Jet Massage-paket med pump.",
     bg: "bg-blue-50",
     tag: "Pahlén",
   },
   {
-    label: "Svetsad liner",
-    slug: "svetsad-liner",
-    count: svetsadCount,
-    desc: "Skräddarsydda liners svetsade efter poolens exakta mått — inkl. inbyggd gaveltrappa och specialmönster som Persia.",
-    bg: "bg-slate-50",
+    label: "Jet Swim",
+    slug: "jet-swim",
+    count: jetSwimCount,
+    desc: "Motion- och Athlete-serien för motionssimning i pooler. Kompletta paket med pump, grundsats och styrbox.",
+    bg: "bg-cyan-50",
+    tag: "Pahlén",
+  },
+  {
+    label: "Vattenfall och Vattenkanoner",
+    slug: "vattenfall-och-vattenkanoner",
+    count: vattenfallCount,
+    desc: "Vattenfall 300 och 500 samt Vattenkanon 109 i fyra munstyckesvarianter — bred, stril, stråle och platt.",
+    bg: "bg-teal-50",
     tag: "Pahlén",
   },
 ];
 
-export default function LinerPage() {
-  const total = standardCount + svetsadCount;
+export default function VattenattraktionerPage() {
+  const total = jetMassageCount + jetSwimCount + vattenfallCount;
 
   return (
     <main className="min-h-screen bg-white">
@@ -50,17 +49,18 @@ export default function LinerPage() {
           <div className="mb-6">
             <Breadcrumb crumbs={[
               { label: "Pool", href: "/pool" },
-              { label: "Liner" },
+              { label: "Tillbehör & Reservdelar", href: "/pool/tillbehor" },
+              { label: "Vattenattraktioner" },
             ]} />
           </div>
           <div className="flex items-end justify-between gap-4 pb-10">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 mb-3">Pahlén</p>
               <h1 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-                Liner
+                Vattenattraktioner
               </h1>
               <p className="mt-4 text-sm text-slate-500 leading-relaxed max-w-lg">
-                Poolliners i standardmått och specialsvetsning — enfärgade, mönstrade och med inbyggd gaveltrappa. Allt från Pahlén.
+                Jet Massage, Jet Swim, vattenfall och vattenkanoner från Pahlén — skapa rörelse och upplevelse i din pool.
               </p>
             </div>
             <div className="shrink-0 text-right hidden sm:block">
@@ -75,7 +75,7 @@ export default function LinerPage() {
 
       {/* ── Subcategory cards ── */}
       <section className="px-6 py-14 sm:px-12 lg:px-20">
-        <div className="mx-auto max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl">
           {subcategories.map(c => (
             <div key={c.slug} className="group flex flex-col rounded-2xl border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
               <div className={`relative w-full aspect-[4/3] ${c.bg} flex items-center justify-center`}>
@@ -98,7 +98,7 @@ export default function LinerPage() {
                 <p className="text-sm text-slate-500 leading-relaxed flex-1">{c.desc}</p>
                 <div className="mt-5">
                   <Link
-                    href={`/pool/liner/${c.slug}`}
+                    href={`/pool/tillbehor/vattenattraktioner/${c.slug}`}
                     className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 transition-colors"
                   >
                     Se produkter

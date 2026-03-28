@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu, X, Search, ShoppingCart, ClipboardList } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, X, Search, ShoppingCart, ClipboardList } from "lucide-react";
 import SearchOverlay from "./SearchOverlay";
 import { useCart } from "./CartContext";
 
 const poolLinks = [
   { label: "Alla pooler", href: "/pool" },
+  { label: "Serviceavtal pool", href: "/pool/serviceavtal" },
   { label: "Thermoblock", href: "/pool/thermoblock" },
   { label: "Gjuten stomme", href: "/pool/gjuten-stomme" },
   { label: "Rostfri stomme", href: "/pool/rostfri-stomme" },
@@ -40,6 +41,7 @@ const spadbadLinks = [
   { label: "Vildmarksspa", href: "/spabad/vildmarksspa" },
   { label: "Family Spa", href: "/spabad/family-spa" },
   { label: "Tillbehör", href: "/spabad/tillbehor" },
+  { label: "Serviceavtal spabad", href: "/spabad/serviceavtal" },
 ];
 
 const grillarLinks = [
@@ -71,26 +73,96 @@ type DropdownItem = {
 
 function Dropdown({ items, onClose }: { label: string; items: DropdownItem[]; onClose: () => void }) {
   const pathname = usePathname();
+  const [hovered, setHovered] = useState<string | null>(null);
+  const [flyoutTop, setFlyoutTop] = useState(0);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const hoveredItem = items.find(i => i.label === hovered);
+
+  useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
+
+  function cancelClose() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }
+
+  function scheduleClose() {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setHovered(null), 180);
+  }
+
+  function handleItemEnter(item: DropdownItem) {
+    cancelClose();
+    if (item.children) {
+      setHovered(item.label);
+      const itemEl = itemRefs.current[item.label];
+      const wrapperEl = wrapperRef.current;
+      if (itemEl && wrapperEl) {
+        setFlyoutTop(itemEl.getBoundingClientRect().top - wrapperEl.getBoundingClientRect().top);
+      }
+    } else {
+      setHovered(null);
+    }
+  }
+
   return (
-    <div className="absolute top-full left-0 mt-2 w-56 rounded-2xl border border-slate-100 bg-white shadow-xl z-50 overflow-hidden py-1">
-      {items.map((item) => (
-        <div key={item.label}>
-          <Link href={item.href} onClick={onClose}
-            className={`flex items-center px-4 py-2.5 text-sm transition-colors hover:bg-[#f5f5f5] ${pathname === item.href ? "text-slate-900 font-semibold" : "text-slate-600"}`}>
-            {item.label}
+    <div ref={wrapperRef} className="absolute top-full left-0 mt-2 z-50"
+      onMouseLeave={scheduleClose}>
+
+      {/* Main panel */}
+      <div className="w-56 rounded-2xl border border-slate-100 bg-white shadow-xl overflow-hidden py-1">
+        {items.map((item) => (
+          <div key={item.label}
+            ref={el => { itemRefs.current[item.label] = el; }}
+            onMouseEnter={() => handleItemEnter(item)}>
+            {item.children ? (
+              <Link href={item.href} onClick={onClose}
+                className={`flex items-center justify-between px-4 py-2.5 text-sm transition-colors hover:bg-[#f5f5f5] ${
+                  hovered === item.label ? "bg-[#f5f5f5]" : ""
+                } ${pathname.startsWith(item.href) ? "text-slate-900 font-semibold" : "text-slate-600"}`}>
+                {item.label}
+                <ChevronRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
+              </Link>
+            ) : (
+              <Link href={item.href} onClick={onClose}
+                className={`flex items-center px-4 py-2.5 text-sm transition-colors hover:bg-[#f5f5f5] ${
+                  pathname === item.href ? "text-slate-900 font-semibold" : "text-slate-600"
+                }`}>
+                {item.label}
+              </Link>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Transparent bridge + flyout — both positioned relative to wrapper */}
+      {hoveredItem?.children && (<>
+        {/* Bridge: covers the 8px gap so diagonal mouse movement doesn't trigger close */}
+        <div
+          className="absolute"
+          style={{ top: flyoutTop, left: "100%", width: 10, bottom: 0 }}
+          onMouseEnter={cancelClose}
+        />
+        {/* Flyout panel aligned to hovered item row */}
+        <div
+          className="absolute w-56 rounded-2xl border border-slate-100 bg-white shadow-xl overflow-hidden py-1"
+          style={{ top: flyoutTop, left: "calc(100% + 6px)" }}
+          onMouseEnter={cancelClose}>
+          <Link href={hoveredItem.href} onClick={onClose}
+            className="flex items-center px-4 pt-3 pb-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-700 transition-colors border-b border-slate-50">
+            {hoveredItem.label}
           </Link>
-          {item.children && (
-            <div className="border-t border-slate-50">
-              {item.children.map((child) => (
-                <Link key={child.href} href={child.href} onClick={onClose}
-                  className={`block pl-7 pr-4 py-2 text-sm transition-colors hover:bg-[#f5f5f5] ${pathname === child.href ? "text-slate-900 font-semibold" : "text-slate-400"}`}>
-                  {child.label}
-                </Link>
-              ))}
-            </div>
-          )}
+          {hoveredItem.children.map((child) => (
+            <Link key={child.href} href={child.href} onClick={onClose}
+              className={`flex items-center px-4 py-2.5 text-sm transition-colors hover:bg-[#f5f5f5] ${
+                pathname === child.href ? "text-slate-900 font-semibold" : "text-slate-600"
+              }`}>
+              {child.label}
+            </Link>
+          ))}
         </div>
-      ))}
+      </>)}
     </div>
   );
 }
@@ -124,11 +196,14 @@ function DropdownTrigger({ label, href, items }: { label: string; href: string; 
 }
 
 export default function Navbar() {
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobilePool, setMobilePool] = useState(false);
   const [mobileSpabad, setMobileSpabad] = useState(false);
   const [mobileGrillar, setMobileGrillar] = useState(false);
   const [mobileTjanster, setMobileTjanster] = useState(false);
+  const [mobilePoolExpanded, setMobilePoolExpanded] = useState<string | null>(null);
+  const [lastTap, setLastTap] = useState<{ label: string; time: number } | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const [floatShown, setFloatShown] = useState(false);
@@ -143,6 +218,8 @@ export default function Navbar() {
     setMobileSpabad(false);
     setMobileGrillar(false);
     setMobileTjanster(false);
+    setMobilePoolExpanded(null);
+    setLastTap(null);
   }, [pathname]);
 
   // Scroll-aware hide/show + floating button
@@ -213,9 +290,6 @@ export default function Navbar() {
           <Link href="/bastu" className={`relative px-3 py-2 text-sm transition-colors after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-slate-900 after:transition-opacity ${pathname === "/bastu" ? "text-slate-900 font-semibold after:opacity-100" : "text-slate-500 hover:text-slate-900 after:opacity-0"}`}>
             Bastu
           </Link>
-          <Link href="/tillbehor" className={`relative px-3 py-2 text-sm transition-colors after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-slate-900 after:transition-opacity ${pathname === "/tillbehor" ? "text-slate-900 font-semibold after:opacity-100" : "text-slate-500 hover:text-slate-900 after:opacity-0"}`}>
-            Tillbehör
-          </Link>
           <DropdownTrigger label="Tjänster" href="/tjanster" items={tjansterLinks} />
           <Link href="/showroom" className={`relative px-3 py-2 text-sm transition-colors after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-slate-900 after:transition-opacity ${pathname === "/showroom" ? "text-slate-900 font-semibold after:opacity-100" : "text-slate-500 hover:text-slate-900 after:opacity-0"}`}>
             Showroom
@@ -272,18 +346,54 @@ export default function Navbar() {
 
           <button onClick={() => setMobilePool((v) => !v)}
             className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">
-            Produkter <ChevronDown className={`w-4 h-4 transition-transform ${mobilePool ? "rotate-180" : ""}`} />
+            Pool <ChevronDown className={`w-4 h-4 transition-transform ${mobilePool ? "rotate-180" : ""}`} />
           </button>
           {mobilePool && (
-            <div className="ml-4 space-y-1 border-l-2 border-slate-100 pl-3">
-              {poolLinks.map((item) => (
-                <div key={item.href}>
-                  <Link href={item.href} className="block py-2 text-sm font-medium text-slate-600 hover:text-slate-900">{item.label}</Link>
-                  {item.children?.map((child) => (
-                    <Link key={child.href} href={child.href} className="block py-1.5 pl-4 text-sm text-slate-400 hover:text-slate-900">{child.label}</Link>
-                  ))}
-                </div>
-              ))}
+            <div className="ml-4 space-y-0.5 border-l-2 border-slate-100 pl-3">
+              {poolLinks.map((item) => {
+                if (!item.children) {
+                  return (
+                    <Link key={item.href} href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block py-2 text-sm font-medium text-slate-600 hover:text-slate-900">
+                      {item.label}
+                    </Link>
+                  );
+                }
+                const isExpanded = mobilePoolExpanded === item.label;
+                return (
+                  <div key={item.href}>
+                    <button
+                      onClick={() => {
+                        const now = Date.now();
+                        if (lastTap?.label === item.label && now - lastTap.time < 3000) {
+                          router.push(item.href);
+                          setMobileOpen(false);
+                          setLastTap(null);
+                        } else {
+                          setMobilePoolExpanded(v => v === item.label ? null : item.label);
+                          setLastTap({ label: item.label, time: now });
+                        }
+                      }}
+                      className="flex w-full items-center justify-between py-2 text-sm font-medium text-slate-600 hover:text-slate-900"
+                    >
+                      {item.label}
+                      <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                    </button>
+                    {isExpanded && (
+                      <div className="ml-3 border-l border-slate-100 pl-3 pb-1 space-y-0.5">
+                        {item.children.map((child) => (
+                          <Link key={child.href} href={child.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="block py-1.5 text-sm text-slate-400 hover:text-slate-900">
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           )}
 
@@ -313,8 +423,6 @@ export default function Navbar() {
 
           <Link href="/bastu" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Bastu</Link>
 
-
-          <Link href="/tillbehor" className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">Tillbehör</Link>
           <button onClick={() => setMobileTjanster((v) => !v)}
             className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-[#f5f5f5]">
             Tjänster <ChevronDown className={`w-4 h-4 transition-transform ${mobileTjanster ? "rotate-180" : ""}`} />

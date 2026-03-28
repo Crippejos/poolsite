@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check, Minus, MapPin, Info } from "lucide-react";
+import { Check, Minus, MapPin, Info, Shield } from "lucide-react";
 import ServiceSignupModal, { type ServicePlan } from "@/app/Components/ServiceSignupModal";
 import Breadcrumb from "@/app/Components/Breadcrumb";
 
@@ -83,25 +83,49 @@ export default function ServiceavtalPage() {
       </div>
 
       {/* Hero */}
-      <section className="bg-slate-900 pt-20 pb-20 px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4">Service & underhåll</p>
-          <h1 className="text-5xl sm:text-6xl font-black text-white leading-none mb-6">
-            Serviceavtal<br />
-            <span className="text-slate-400">för spabad 2026</span>
-          </h1>
-          <p className="text-slate-400 text-lg leading-relaxed max-w-xl mx-auto">
-            Välj det avtal som passar dig bäst — vi sköter resten. Alla besök på vardagar inom 5 mils radie från Nacka/Värmdö.
-          </p>
-          <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-800 px-4 py-2 text-xs text-slate-400">
-            <Info className="h-3.5 w-3.5 shrink-0" />
-            Kemikalier ingår ej om inget annat avtalas
+      <section className="border-b border-slate-100 px-6 pt-6 pb-10 sm:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+
+            {/* Text */}
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-3">Service & underhåll</p>
+              <h1 className="text-4xl sm:text-5xl font-black text-slate-900 leading-none mb-4">
+                Serviceavtal<br />
+                <span className="text-slate-300">för spabad 2026</span>
+              </h1>
+              <p className="text-slate-500 text-sm leading-relaxed mb-5 max-w-md">
+                Välj det avtal som passar dig bäst — vi sköter resten. Alla besök på vardagar inom 5 mils radie från Nacka/Värmdö.
+              </p>
+              <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-500">
+                <Info className="h-3.5 w-3.5 shrink-0" />
+                Kemikalier ingår ej om inget annat avtalas
+              </div>
+            </div>
+
+            {/* Image placeholder */}
+            <div className="w-full lg:w-80 xl:w-96 shrink-0">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
+                <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 30% 35%, #fde68a 0%, #f59e0b 45%, #b45309 100%)" }} />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
+                    <Shield className="h-8 w-8 text-white/70" />
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">Elite Pool & Spa</p>
+                  <p className="text-sm font-black text-white">Spabad serviceavtal 2026</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* Plan cards */}
-      <section className="bg-[#f5f5f5] px-6 py-20">
+      <section className="bg-[#f5f5f5] px-6 py-10 sm:px-12 lg:px-20">
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {plans.map((plan, i) => {
